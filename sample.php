@@ -11,7 +11,7 @@ $signPackage = $jssdk->GetSignPackage();
   <title></title>
 </head>
 <body>
-  <button id="btn">点击</button> 
+  <button id="btn">点击点开</button> 
 </body>
 <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script>
