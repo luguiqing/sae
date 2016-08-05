@@ -12,7 +12,7 @@
 	<style>
 		*{margin:0px 0px; padding: 0px 0px;font-family: "微软雅黑"}
 		a{text-decoration: none;display: block;color: #fff;}
-		a:hover{-webkit-tap-highlight-color:transparent;background-color: green!important;}
+		a:hover{-webkit-tap-highlight-color:transparent;}
 		ul li{list-style: none;}
 		@font-face {font-family: 'iconfont';
 	      src: url('iconfont/iconfont.eot'); /* IE9*/
