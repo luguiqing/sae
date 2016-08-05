@@ -1,0 +1,2 @@
+7月14：
+main.js ,module_math.js用来测试AMD"异步模块定义"的，在css中还定义了另外一个模块module_trydirpath.js

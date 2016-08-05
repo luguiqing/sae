@@ -1,0 +1,19 @@
+require.config({
+	paths:{
+		"math":"module_math",
+		"trydirpath":"../css/module_trydirpath"
+	}
+})
+define("direct",function(){
+	var first=function(){
+		alert('直接调用');
+	}
+	return{
+		first:first
+	}
+})
+require(['math','trydirpath','direct'],function(math,trydirpath,direct){
+	console.log(math.add(2,3));
+	math.use_trydirpath(3,4,5);
+	direct.first();
+})
