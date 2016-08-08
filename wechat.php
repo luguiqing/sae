@@ -15,7 +15,6 @@ $signPackage = $jssdk->GetSignPackage();
   <button id="btn1" style="width:50px;">录音</button> 
   <button id="btn2" style="width:50px;">停止</button>
   <audio controls="controls" autoplay="autoplay">
-    <source src="" type="audio/ogg" />
     <source src="" type="audio/mpeg" />
   </audio>
 </body>
@@ -52,10 +51,9 @@ $signPackage = $jssdk->GetSignPackage();
        $("#btn2").on("click",function(){
             wx.stopRecord({
                 success: function (res) {
-                  console.log("结束");
                   var localId = res.localId;
-                  $("audio source").attr({
-                    "src":localId
+                  $("audio>source").attr({
+                    "src":"img/1.mp3"
                   });
                 
                }
