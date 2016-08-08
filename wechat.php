@@ -42,14 +42,18 @@ $signPackage = $jssdk->GetSignPackage();
     });
     wx.ready(function () {
        $("#btn").on({
-          touchstart:function(){wx.startRecord();},
+          touchstart:function(){
+            wx.startRecord();
+            alert("开始");
+          },
           touchend:function(){
             wx.stopRecord({
                 success: function (res) {
                 var localId = res.localId;
                 $("audio").attr({
                   "src":localId
-                })
+                });
+                alert("结束");
                }
 
             });
