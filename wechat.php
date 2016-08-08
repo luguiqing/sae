@@ -15,7 +15,7 @@ $signPackage = $jssdk->GetSignPackage();
   <button id="btn1" style="width:50px;">录音</button> 
   <button id="btn2" style="width:50px;">停止</button>
   <button id="btn3" style="width:50px;">播放本地音频</button>
-  <button id="btn3" style="width:50px;">播放</button>
+  <button id="btn4" style="width:50px;">播放</button>
 </body>
 <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script>
@@ -59,12 +59,12 @@ $signPackage = $jssdk->GetSignPackage();
             });
 
        });
-       $("#btn3").on("click",function(){
+       $("#btn4").on("click",function(){
             wx.playVoice({
               localId: mylocalId
             });
           });
-       $("#btn4").on("click",function(){
+       $("#btn3").on("click",function(){
             wx.playVoice({
               localId: "https://luguiqing.applinzi.com/img/1.mp3"
             });
