@@ -12,7 +12,8 @@ $signPackage = $jssdk->GetSignPackage();
   <title></title>
 </head>
 <body>
-  <button id="btn">录音</button> 
+  <button id="btn1" style="width:50px;">录音</button> 
+  <button id="btn2" style="width:50px;">停止</button>
   <audio src=""></aduio>
 </body>
 <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
@@ -41,24 +42,23 @@ $signPackage = $jssdk->GetSignPackage();
       ]
     });
     wx.ready(function () {
-       $("#btn").on({
-          touchstart:function(){
+       $("#btn1").on("click",function(){
             wx.startRecord();
             alert("开始");
-          },
-          touchend:function(){
+          });
+       $("#btn2").on("click",function(){
             wx.stopRecord({
                 success: function (res) {
-                var localId = res.localId;
-                $("audio").attr({
-                  "src":localId
-                });
-                alert("结束");
+                  console.log("结束");
+                  var localId = res.localId;
+                  $("audio").attr({
+                    "src":localId
+                  });
+                
                }
 
             });
 
-          }
        });
     });
   });
