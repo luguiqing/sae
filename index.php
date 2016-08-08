@@ -101,7 +101,7 @@ $signPackage = $jssdk->GetSignPackage();
 						<div className="ajax_head">
 							<div className="ajax_head_img">
 								<img src="img/1.jpg" alt="头像"/>
-								<p>{this.state.id}</p>
+								<p>{this.state.id} <button type="button" id="btn">修改图像<button></p>
 								<p className="head_p">{this.state.connect?"通讯连接":"通讯中断"}<span> ( 电量 {this.state.power} )</span></p>
 							</div>
 							<div className="ajax_head_address" style={{clear:'both'}}>
@@ -112,7 +112,7 @@ $signPackage = $jssdk->GetSignPackage();
 						<div className="content_container">
 							<div className="left">
 								<ul>
-									<li><a href="#" style={{backgroundColor:"#324CE6"}}><i className="iconfont">&#xe606;</i>微聊</a></li>
+									<li><a href="https://luguiqing.applinzi.com/wechat.php" style={{backgroundColor:"#324CE6"}}><i className="iconfont">&#xe606;</i>微聊</a></li>
 									<li><a href="#" style={{backgroundColor:"#1E39D6"}}><i className="iconfont">&#xe602;</i>健康</a></li>
 									<li><a href="#" style={{backgroundColor:"#0C219A"}}><i className="iconfont">&#xe638;</i>足迹</a></li>
 									<li><a href="#" style={{backgroundColor:"#09155A"}}><i className="iconfont">&#xe635;</i>安全区域</a></li>
@@ -164,7 +164,21 @@ $signPackage = $jssdk->GetSignPackage();
 	    ]
 	  });
 	  wx.ready(function () {
+	  	 document.getElementById("btn").onclick=function(){
+	      wx.chooseImage({
+	      count: 1, // 默认9
+	      sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+	      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+	      success: function (res) {
+	        var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+	        $("img").attr({
+	          "src":localIds[0]
+	        })
+	        }
 
+	      });
+
+    }
 	  });
 </script>
 </html>
