@@ -101,7 +101,7 @@ $signPackage = $jssdk->GetSignPackage();
 						<div className="ajax_head">
 							<div className="ajax_head_img">
 								<img src="img/1.jpg" alt="头像"/>
-								<p>{this.state.id} <button type="button" id="btn">修改图像</button></p>
+								<p>{this.state.id} <button type="button" id="btn" style={{backgroundColor:"#536DFB",border:"0px"}}>修改图像</button></p>
 								<p className="head_p">{this.state.connect?"通讯连接":"通讯中断"}<span> ( 电量 {this.state.power} )</span></p>
 							</div>
 							<div className="ajax_head_address" style={{clear:'both'}}>
