@@ -15,7 +15,7 @@ $signPackage = $jssdk->GetSignPackage();
   <button id="btn1" style="width:50px;">录音</button> 
   <button id="btn2" style="width:50px;">停止</button>
   <audio controls="controls" autoplay="autoplay">
-    <source src="img/1.mp3" type="audio/mpeg" />
+    <source src="" type="audio/mpeg" />
   </audio>
 </body>
 <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
