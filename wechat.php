@@ -44,6 +44,7 @@ $signPackage = $jssdk->GetSignPackage();
       ]
     });
     wx.ready(function () {
+      var localId;
        $("#btn1").on("click",function(){
             wx.startRecord();
             alert("开始");
@@ -51,7 +52,7 @@ $signPackage = $jssdk->GetSignPackage();
        $("#btn2").on("click",function(){
             wx.stopRecord({
                 success: function (res) {
-                  var localId = res.localId;
+                  localId = res.localId;
                   $("audio>source").attr({
                     "src":"img/1.mp3"
                   });
