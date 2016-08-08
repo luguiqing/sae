@@ -17,9 +17,15 @@ $signPackage = $jssdk->GetSignPackage();
   <button id="btn3" style="width:50px;">播放本地音频</button>
   <button id="btn4" style="width:50px;">播放</button>
   <br/><br/>
-  <audio src="img/1.mp3"></audio>
-  <audio src="img/1.mp3"></audio>
-  <audio src="img/1.mp3"></audio>
+  <audio controls="controls">
+    <source src="img/1.mp3" type="audio/mpeg" />
+  </audio>
+  <audio controls="controls">
+    <source src="img/1.mp3" type="audio/mpeg" />
+  </audio>
+  <audio controls="controls">
+    <source src="img/1.mp3" type="audio/mpeg" />
+  </audio>
 </body>
 <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script>
