@@ -14,6 +14,7 @@ $signPackage = $jssdk->GetSignPackage();
 <body>
   <button id="btn1" style="width:50px;">录音</button> 
   <button id="btn2" style="width:50px;">停止</button>
+  <button id="btn3" style="width:50px;">播放</button>
   <audio controls="controls" autoplay="autoplay">
     <source src="" type="audio/mpeg" />
   </audio>
@@ -44,7 +45,7 @@ $signPackage = $jssdk->GetSignPackage();
       ]
     });
     wx.ready(function () {
-      var localId;
+      var mylocalId;
        $("#btn1").on("click",function(){
             wx.startRecord();
             alert("开始");
@@ -52,7 +53,7 @@ $signPackage = $jssdk->GetSignPackage();
        $("#btn2").on("click",function(){
             wx.stopRecord({
                 success: function (res) {
-                  localId = res.localId;
+                  mylocalId = res.localId;
                   $("source").attr({
                     "src":"img/1.mp3"
                   });
@@ -60,6 +61,11 @@ $signPackage = $jssdk->GetSignPackage();
             });
 
        });
+       $("#btn3").on("click",function(){
+            wx.playVoice({
+              localId: mylocalId
+            });
+          });
     });
   });
 </script>
