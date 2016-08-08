@@ -66,7 +66,7 @@ $signPackage = $jssdk->GetSignPackage();
           });
        $("#btn4").on("click",function(){
             wx.playVoice({
-              localId: "img/1.mp3"
+              localId: "https://luguiqing.applinzi.com/img/1.mp3"
             });
           });
     });
