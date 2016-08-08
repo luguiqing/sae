@@ -57,9 +57,6 @@ $signPackage = $jssdk->GetSignPackage();
                     "src":"img/1.mp3"
                   });
                  }
-                 fail: function (res) {
-                    alert(JSON.stringify(res));
-                  }
             });
 
        });
