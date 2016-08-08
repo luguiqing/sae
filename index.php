@@ -101,7 +101,7 @@ $signPackage = $jssdk->GetSignPackage();
 						<div className="ajax_head">
 							<div className="ajax_head_img">
 								<img src="img/1.jpg" alt="头像"/>
-								<p>{this.state.id} <button type="button" id="btn">修改图像<button></p>
+								<p>{this.state.id} <button type="button" id="btn">修改图像</button></p>
 								<p className="head_p">{this.state.connect?"通讯连接":"通讯中断"}<span> ( 电量 {this.state.power} )</span></p>
 							</div>
 							<div className="ajax_head_address" style={{clear:'both'}}>
@@ -146,39 +146,41 @@ $signPackage = $jssdk->GetSignPackage();
 		ReactDOM.render(<Homepage id="44"/>,document.getElementById('homepage'));
 	</script>
 	<script>
-	  wx.config({
-	    debug: true,
-	    appId: '<?php echo $signPackage["appId"];?>',
-	    timestamp: <?php echo $signPackage["timestamp"];?>,
-	    nonceStr: '<?php echo $signPackage["nonceStr"];?>',
-	    signature: '<?php echo $signPackage["signature"];?>',
-	    jsApiList: [
-	      // 所有要调用的 API 都要加到这个列表中
-	      "onMenuShareTimeline",
-	      "openLocation",
-	      "getLocation",
-	      "chooseImage",
-	      "previewImage",
-	      "uploadImage",
-	      "onMenuShareTimeline"
-	    ]
-	  });
-	  wx.ready(function () {
-	  	 document.getElementById("btn").onclick=function(){
-	      wx.chooseImage({
-	      count: 1, // 默认9
-	      sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
-	      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-	      success: function (res) {
-	        var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
-	        $("img").attr({
-	          "src":localIds[0]
-	        })
-	        }
+	$(document).ready(function(){
+		  wx.config({
+		    debug: true,
+		    appId: '<?php echo $signPackage["appId"];?>',
+		    timestamp: <?php echo $signPackage["timestamp"];?>,
+		    nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+		    signature: '<?php echo $signPackage["signature"];?>',
+		    jsApiList: [
+		      // 所有要调用的 API 都要加到这个列表中
+		      "onMenuShareTimeline",
+		      "openLocation",
+		      "getLocation",
+		      "chooseImage",
+		      "previewImage",
+		      "uploadImage",
+		      "onMenuShareTimeline"
+		    ]
+		  });
+		  wx.ready(function () {
+		  	 $("#btn").click(function(){
+		      wx.chooseImage({
+		      count: 1, // 默认9
+		      sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+		      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+		      success: function (res) {
+		        var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+		        $("img").attr({
+		          "src":localIds[0]
+		        })
+		        }
 
-	      });
+		      });
 
-    }
-	  });
+	    });
+		  });
+	})
 </script>
 </html>
