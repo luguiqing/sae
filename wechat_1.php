@@ -6,54 +6,28 @@ $signPackage = $jssdk->GetSignPackage();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-    <script src="js/react-0.14.7/build/react.js"></script>
-    <script src="js/react-0.14.7/build/react-dom.js"></script>
-    <script src="js/jquery-1.12.4.min.js"></script>
-    <script src="js/browser.min.js"></script>
-    <title>微聊</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+  <script src="js/jquery-1.12.4.min.js"></script>
+  <title></title>
 </head>
 <body>
-    <div id="container">
-        
-    </div>
+  <button id="btn1" style="width:50px;">录音</button> 
+  <button id="btn2" style="width:50px;">停止</button>
+  <button id="btn3" style="width:50px;">播放本地音频</button>
+  <button id="btn4" style="width:50px;">播放</button>
+  <br/><br/>
+  <audio>
+    <source src="img/1.mp3" type="audio/mpeg" />
+  </audio>
+  <audio controls="controls">
+    <source src="img/1.mp3" type="audio/mpeg" />
+  </audio>
+  <audio controls="controls">
+    <source src="img/1.mp3" type="audio/mpeg" />
+  </audio>
 </body>
 <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-<script type="text/babel">
-    var WeChat = React.createClass({
-        getInitialState:function(){
-            return {voiceArr:[]}
-        },
-        getMsg:function(){
-            var _self = this;
-            $.ajax({
-                type:"GET",
-                url:"wechat_houtai.php",
-                dataType:"json",
-                success:function(data){
-                    _self.setState({voiceArr:data.voiceArr})
-                    console.log(data);              
-                },
-                error:function(xhr,status,err){
-                    console.log(err);
-                    console.log(status);
-                }
-                
-            })
-        },
-        componentDidMount:function(){
-            this.interval = setInterval(this.getMsg,2000);
-        },
-        componentWillUnmount:function(){
-            clearInterval(this.getMsg);
-        },
-        render:function(){
-            <div></div>
-        }
-    });
-    ReactDOM.render(<WeChat/>,document.getElementById("container"));
-</script>
 <script>
   $(document).ready(function(){
     wx.config({

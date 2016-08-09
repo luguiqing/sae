@@ -12,7 +12,7 @@ $signPackage = $jssdk->GetSignPackage();
 		<script src="js/react-0.14.7/build/react.js"></script>
 		<script src="js/react-0.14.7/build/react-dom.js"></script>
 		<script src="js/jquery-1.12.4.min.js"></script>
-    	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script> 
+    	<script src="js/browser.min.js"></script> 
 	</head>
 	<style>
 		*{margin:0px 0px; padding: 0px 0px;font-family: "微软雅黑"}
