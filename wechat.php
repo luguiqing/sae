@@ -14,6 +14,31 @@ $signPackage = $jssdk->GetSignPackage();
     <script src="js/browser.min.js"></script>
     <title>微聊</title>
 </head>
+<style>
+    *{margin: 0px;padding: 0px}
+    @font-face {font-family: 'iconfont';
+      src: url('iconfont_1/iconfont.eot'); /* IE9*/
+      src: url('iconfont_1/iconfont.eot?#iefix') format('embedded-opentype'), 
+      url('iconfont_1/iconfont.woff') format('woff'), 
+      url('iconfont_1/iconfont.ttf') format('truetype'),
+      url('iconfont_1/iconfont.svg#iconfont') format('svg'); 
+    }
+    .iconfont{
+      font-family:"iconfont" !important;
+      font-size:16px;font-style:normal;
+      -webkit-font-smoothing: antialiased;
+      -webkit-text-stroke-width: 0.2px;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    audio{opacity: 0;}
+
+    .WeChat .right{float: right;width: 50%;position: relative;height: 20px;margin:5px;}
+    .WeChat .left{float: left;width: 50%;position: relative;height: 20px;margin: 5px;}
+    .wechat img{display: inline-block;width: auto;height: 20px;}
+
+    .wechat .right .right_child{position: absolute;right: 0px ;top:0px;height: 20px;}
+    .wechat .left  .left_child{position: absolute;left: 0px;top:0px;height: 20px;}
+</style>
 <body>
     <div id="container">
         
@@ -23,7 +48,7 @@ $signPackage = $jssdk->GetSignPackage();
 <script type="text/babel">
     var WeChat = React.createClass({
         getInitialState:function(){
-            return {voiceArr:[]}
+            return {voiceArr:[],flags:[]}
         },
         getMsg:function(){
             var _self = this;
@@ -32,8 +57,15 @@ $signPackage = $jssdk->GetSignPackage();
                 url:"wechat_houtai.php",
                 dataType:"json",
                 success:function(data){
-                    _self.setState({voiceArr:data.voiceArr})
-                    console.log(data);              
+                    var voiceUrl =[];
+                    var flag=[];
+                   /* _self.setState({voiceArr:data});*/
+                    for(var i=0;i<data.length;i++){
+                        voiceUrl[i]=data[i].voiceUrl;
+                        flag[i]=data[i].flag;
+                    }
+                    _self.setState({voiceArr:voiceUrl,flags:flag});
+                    console.log(_self.state.voiceArr);            
                 },
                 error:function(xhr,status,err){
                     console.log(err);
@@ -43,13 +75,38 @@ $signPackage = $jssdk->GetSignPackage();
             })
         },
         componentDidMount:function(){
-            this.interval = setInterval(this.getMsg,2000);
+            this.interval = setInterval(this.getMsg,6000);
         },
         componentWillUnmount:function(){
             clearInterval(this.getMsg);
         },
         render:function(){
-            <div></div>
+            var voiceArr = this.state.voiceArr;
+            var flags = this.state.flags;
+           return(
+                <div className="wechat">
+                    {
+
+                       voiceArr.map(function(voice,index){
+                            return  flags[index]==='1'?(<div className="right">
+                                                            <div className="right_child" alt="头像">
+                                                                <i className="iconfont" style={{color:"red"}}>&#xe65d;</i><img src="img/1.jpg" style={{marginLeft:"10px;"}}/>
+                                                            </div>
+                                                            <audio controls="controls" id={index}>
+                                                                <source src={voice} type="audio/mpeg" />
+                                                            </audio></div>):(<div className="left">
+                                                                                <div className="left_child" alt="头像">
+                                                                                    <img src="img/1.jpg" style={{marginRight:"10px;"}}/><i className="iconfont" style={{color:"green"}}>&#xe63d;</i>
+                                                                                </div>
+                                                                                <audio controls="controls" id={index}>
+                                                                                    <source src={voice} type="audio/mpeg" />
+                                                                                </audio></div>)
+
+                           })
+
+                    }
+                </div>
+           ) 
         }
     });
     ReactDOM.render(<WeChat/>,document.getElementById("container"));
@@ -79,6 +136,24 @@ $signPackage = $jssdk->GetSignPackage();
       ]
     });
     wx.ready(function () {
+        $("audio").each(function(index){
+            $(this).prev().click(function(){
+                if($(this).paused){
+                    $(this).play();
+                }
+                else{
+                    $(this).pause();
+                }
+            })
+        })
+
+
+
+
+
+
+
+    //之前的
       var mylocalId;
        $("#btn1").on("click",function(){
             wx.startRecord();

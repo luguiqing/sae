@@ -9,18 +9,19 @@ $staff = array(
 		array("flag"=>"0","voiceUrl"=>"img/1.mp3"),
 		array("flag"=>"0","voiceUrl"=>"img/1.mp3"),
 	);
+$staf = json_encode($staff);
 if($_SERVER["REQUEST_METHOD"]=="GET"){
 	search();
 }else if($_SERVER["REQUEST_METHOD"]=="POST"){
 	create();
 }
 function search(){
-	global $staff;
-	if(empty($staff)){
+	global $staf;
+	if(empty($staf)){
 		$result='{"address":"没有数据！"}';
 	}
 	else {
-			$result='{"voiceArr":"'.$staff.'"}';
+			$result=$staf;
 	}
  	echo $result;
 }
