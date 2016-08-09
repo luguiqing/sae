@@ -32,8 +32,8 @@ $signPackage = $jssdk->GetSignPackage();
     }
     audio{opacity: 0;}
 
-    .WeChat .right{float: right;width: 50%;position: relative;height: 20px;margin:5px;}
-    .WeChat .left{float: left;width: 50%;position: relative;height: 20px;margin: 5px;}
+    .Wechat .right{float:right;width: 50%;position: relative;height: 20px;margin:5px;}
+    .Wechat .left{float: left;width: 50%;position: relative;height: 20px;margin: 5px;}
     .wechat img{display: inline-block;width: auto;height: 20px;}
 
     .wechat .right .right_child{position: absolute;right: 0px ;top:0px;height: 20px;}
