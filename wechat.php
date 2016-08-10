@@ -38,6 +38,10 @@ $signPackage = $jssdk->GetSignPackage();
 
     .wechat .right .right_child{position: absolute;right: 0px ;top:0px;height: 20px;}
     .wechat .left  .left_child{position: absolute;left: 0px;top:0px;height: 20px;}
+
+    .text_message{position: fixed;bottom: 0px;left: 0px;height: 50px;background-color:gray;border: 0px;width: 100%;}
+    button{height: 50px;border:0px;display: inline-block;width: 10%}
+    input{height: 50px;border: 0px;display: inline-block;width: 80%;}
 </style>
 <body>
     <div id="container">
@@ -64,7 +68,7 @@ $signPackage = $jssdk->GetSignPackage();
                         voiceUrl[i]=data[i].voiceUrl;
                         flag[i]=data[i].flag;
                     }
-                    _self.setState({voiceArr:voiceUrl,flags:flag});           
+                    _self.setState({voiceArr:voiceUrl,flags:flag});          
                 },
                 error:function(xhr,status,err){
                     console.log(err);
@@ -122,6 +126,13 @@ $signPackage = $jssdk->GetSignPackage();
                            })
 
                     }
+                    <div className="text_message">
+                        <form>
+                            <button><i className="iconfont" style={{color:"yellow"}}>&#xe65d;</i></button>
+                            <input onChange={this.onChange}/>
+                            <button>发送</button>
+                        </form>
+                    </div>
                 </div>
            ) 
         }
