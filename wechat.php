@@ -148,7 +148,7 @@ $signPackage = $jssdk->GetSignPackage();
                     <div className="voice_message">
                         <form onSubmit={this.handleSubmit}>
                             <button onClick={_self.voiceToggleChange} type="button">切换</button>
-                            <button style={{width:"80%"}} type="button">录音</button>
+                            <button style={{width:"70%"}} type="button">录音</button>
                             <button type="button">发送语音</button>
                         </form>
                     </div>
