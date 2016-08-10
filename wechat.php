@@ -25,12 +25,12 @@ $signPackage = $jssdk->GetSignPackage();
     }
     .iconfont{
       font-family:"iconfont" !important;
-      font-size:50px;font-style:normal;
+      font-size:40px;font-style:normal;
       -webkit-font-smoothing: antialiased;
       -webkit-text-stroke-width: 0.5px;
       -moz-osx-font-smoothing: grayscale;
     }
-    audio{opacity: 0.2;width: 10px;}
+    audio{opacity: 0;width: 10px;}
 
     .wechat .right{float:right;width: 50%;position: relative;height: 40px;margin:5px;}
     .wechat .left{float: left;width: 50%;position: relative;height: 40px;margin: 5px;}
@@ -140,7 +140,7 @@ $signPackage = $jssdk->GetSignPackage();
                     }
                     <div className="text_message">
                         <form onSubmit={this.handleSubmit}>
-                            <button onClick={_self.textToggleChange} type="button"><i className="iconfont" style={{color:"yellow"}}>&#xe65d;</i></button>
+                            <button onClick={_self.textToggleChange} type="button">文本</button>
                             <input onChange={this.onChange}/>
                             <button type="button">发送文字</button>
                         </form>
