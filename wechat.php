@@ -74,7 +74,8 @@ $signPackage = $jssdk->GetSignPackage();
             })
         },
         componentDidMount:function(){
-            this.interval = setInterval(this.getMsg,5000);
+            /*this.interval = setInterval(this.getMsg,5000);*/
+            this.getMsg();
         },
         componentWillUnmount:function(){
             clearInterval(this.getMsg);
