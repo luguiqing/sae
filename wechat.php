@@ -168,7 +168,7 @@ $signPackage = $jssdk->GetSignPackage();
         $(".wechat>div").click(function(){
 
             var index = $(this).index();
-            alert(index);
+            alert("ddd");
             $("audio").eq(index).play();
         });
         $("img").on("click",function(){
