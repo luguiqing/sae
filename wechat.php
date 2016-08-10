@@ -74,7 +74,7 @@ $signPackage = $jssdk->GetSignPackage();
             })
         },
         componentDidMount:function(){
-            this.interval = setInterval(this.getMsg,1000);
+            this.interval = setInterval(this.getMsg,5000);
         },
         componentWillUnmount:function(){
             clearInterval(this.getMsg);
@@ -84,15 +84,7 @@ $signPackage = $jssdk->GetSignPackage();
             this.refs.uu.getDOMNode().play();*/
             /*var myVideo=document.getElementById("1");
             myVideo.play();*/
-            $(".wechat>div").on('click',function(){
-                var index = $(this).index();
-                var mychoosevoide=document.getElementById(index);
-                if(mychoosevoide.paused){
-                    mychoosevoide.play();
-                }else{
-                    mychoosevoide.pause();
-                }
-            });
+            
                    
         },
         render:function(){
