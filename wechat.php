@@ -106,8 +106,11 @@ $signPackage = $jssdk->GetSignPackage();
             $(".voice_message").css({display:'block'});
         },
         voiceToggleChange:function(){
-            $(".text_message").css({display:'none'});
-            $(".voice_message").css({display:'block'});
+            $(".voice_message").css({display:'none'});
+            $(".text_message").css({display:'block'});
+        },
+        handleSubmit:function(){
+            alert("发送成功");
         },
         render:function(){
             var voiceArr = this.state.voiceArr;
@@ -136,17 +139,17 @@ $signPackage = $jssdk->GetSignPackage();
 
                     }
                     <div className="text_message">
-                        <form>
-                            <button onClick={_self.textToggleChange}><i className="iconfont" style={{color:"yellow"}}>&#xe65d;</i></button>
+                        <form onSubmit={this.handleSubmit}>
+                            <button onClick={_self.textToggleChange} type="button"><i className="iconfont" style={{color:"yellow"}}>&#xe65d;</i></button>
                             <input onChange={this.onChange}/>
-                            <button>发送</button>
+                            <button type="button">发送文字</button>
                         </form>
                     </div>
                     <div className="voice_message">
-                        <form>
-                            <button onClick={_self.voiceToggleChange}>切换</button>
+                        <form onSubmit={this.handleSubmit}>
+                            <button onClick={_self.voiceToggleChange} type="button">切换</button>
                             <input onChange={this.onChange}/>
-                            <button>发送</button>
+                            <button type="button">发送语音</button>
                         </form>
                     </div>
                 </div>
