@@ -6,8 +6,15 @@ $staff = array(
 		array("flag"=>"1","voiceUrl"=>"img/1.mp3"),
 		array("flag"=>"0","voiceUrl"=>"img/1.mp3"),
 		array("flag"=>"0","voiceUrl"=>"img/1.mp3"),
+		array("flag"=>"1","voiceUrl"=>"img/1.mp3"),
 		array("flag"=>"0","voiceUrl"=>"img/1.mp3"),
 		array("flag"=>"0","voiceUrl"=>"img/1.mp3"),
+		array("flag"=>"0","voiceUrl"=>"img/1.mp3"),
+		array("flag"=>"1","voiceUrl"=>"img/1.mp3"),
+		array("flag"=>"0","voiceUrl"=>"img/1.mp3"),
+		array("flag"=>"0","voiceUrl"=>"img/1.mp3"),
+		array("flag"=>"1","voiceUrl"=>"img/1.mp3"),
+		array("flag"=>"0","voiceUrl"=>"img/1.mp3")
 	);
 $staf = json_encode($staff);
 if($_SERVER["REQUEST_METHOD"]=="GET"){

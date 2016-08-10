@@ -34,7 +34,7 @@ $signPackage = $jssdk->GetSignPackage();
 
     .wechat .right{float:right;width: 50%;position: relative;height: 40px;margin:5px;background-color: gray}
     .wechat .left{float: left;width: 50%;position: relative;height: 40px;margin: 5px;background-color: gray}
-    .wechat img{display: inline-block;width: auto;height: 20px;}
+    .wechat img{display: inline-block;width: auto;height: 40px;}
 
     .wechat .right .right_child{position: absolute;right: 0px ;top:0px;height: 20px;}
     .wechat .left  .left_child{position: absolute;left: 0px;top:0px;height: 20px;}
