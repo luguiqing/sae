@@ -39,9 +39,10 @@ $signPackage = $jssdk->GetSignPackage();
     .wechat .right .right_child{position: absolute;right: 0px ;top:0px;height: 20px;}
     .wechat .left  .left_child{position: absolute;left: 0px;top:0px;height: 20px;}
 
-    .text_message{position: fixed;bottom: 0px;left: 0px;height: 50px;background-color:gray;border: 0px;width: 100%;}
-    button{height: 50px;border:0px;display: inline-block;width: 10%}
-    input{height: 50px;border: 0px;display: inline-block;width: 80%;}
+    .text_message{position: fixed;bottom: 0px;left: 0px;height: 50px;border: 0px;width: 100%;}
+    .voice_message{position: fixed;bottom: 0px;left: 0px;height: 50px;border: 0px;width: 100%;display: none;}
+    button{height: 50px;border:0px;display: inline-block;width: 15%}
+    input{height: 50px;border: 0px;display: inline-block;width: 70%;}
 </style>
 <body>
     <div id="container">
@@ -84,7 +85,7 @@ $signPackage = $jssdk->GetSignPackage();
         componentWillUnmount:function(){
             clearInterval(this.getMsg);
         },
-        handleClick:function(e){
+        voiceboxtouch:function(e){
             /*alert($('.right').css("height"));
             this.refs.uu.getDOMNode().play();*/
             /*var myVideo=document.getElementById("1");
@@ -100,6 +101,14 @@ $signPackage = $jssdk->GetSignPackage();
             });
                    
         },
+        textToggleChange:function(){
+            $(".text_message").css({display:'none'});
+            $(".voice_message").css({display:'block'});
+        },
+        voiceToggleChange:function(){
+            $(".text_message").css({display:'none'});
+            $(".voice_message").css({display:'block'});
+        },
         render:function(){
             var voiceArr = this.state.voiceArr;
             var flags = this.state.flags;
@@ -109,13 +118,13 @@ $signPackage = $jssdk->GetSignPackage();
                     {
 
                        voiceArr.map(function(voice,index){
-                            return  flags[index]==='1'?(<div className="right"  ref={"voice"+index} onTouchStart={_self.handleClick}>
+                            return  flags[index]==='1'?(<div className="right"  ref={"voice"+index} onTouchStart={_self.voiceboxtouch}>
                                                             <div className="right_child" alt="头像">
                                                                 <i className="iconfont" style={{color:"red"}}>&#xe65d;</i><img src="img/1.jpg" style={{marginLeft:"10px;"}}/>
                                                             </div>
                                                             <audio controls="controls" ref={index} id={index}>
                                                                 <source src={voice} type="audio/mpeg" />
-                                                            </audio></div>):(<div className="left" ref={"voice"+index} onTouchStart={_self.handleClick}>
+                                                            </audio></div>):(<div className="left" ref={"voice"+index} onTouchStart={_self.voiceboxtouch}>
                                                                                 <div className="left_child" alt="头像">
                                                                                     <img src="img/1.jpg" style={{marginRight:"10px;"}}/><i className="iconfont" style={{color:"green"}}>&#xe63d;</i>
                                                                                 </div>
@@ -128,7 +137,14 @@ $signPackage = $jssdk->GetSignPackage();
                     }
                     <div className="text_message">
                         <form>
-                            <button><i className="iconfont" style={{color:"yellow"}}>&#xe65d;</i></button>
+                            <button onClick={_self.textToggleChange}><i className="iconfont" style={{color:"yellow"}}>&#xe65d;</i></button>
+                            <input onChange={this.onChange}/>
+                            <button>发送</button>
+                        </form>
+                    </div>
+                    <div className="voice_message">
+                        <form>
+                            <button onClick={_self.voiceToggleChange}>切换</button>
                             <input onChange={this.onChange}/>
                             <button>发送</button>
                         </form>
@@ -179,39 +195,6 @@ $signPackage = $jssdk->GetSignPackage();
             alert('dd');
         })
 
-
-
-
-
-
-
-    //之前的
-    /*  var mylocalId;
-       $("#btn1").on("click",function(){
-            wx.startRecord();
-            alert("开始");
-          });
-       $("#btn2").on("click",function(){
-            wx.stopRecord({
-                success: function (res) {
-                  mylocalId = res.localId;
-                  $("source").attr({
-                    "src":"img/1.mp3"
-                  });
-                 }
-            });
-
-       });
-       $("#btn4").on("click",function(){
-            wx.playVoice({
-              localId: mylocalId
-            });
-          });
-       $("#btn3").on("click",function(){
-            wx.playVoice({
-              localId: "https://luguiqing.applinzi.com/img/1.mp3"
-            });
-          });*/
     });
   });
 </script>
