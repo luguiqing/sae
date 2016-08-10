@@ -27,17 +27,17 @@ $signPackage = $jssdk->GetSignPackage();
       font-family:"iconfont" !important;
       font-size:40px;font-style:normal;
       -webkit-font-smoothing: antialiased;
-      -webkit-text-stroke-width: 0.5px;
+      -webkit-text-stroke-width: 0.2px;
       -moz-osx-font-smoothing: grayscale;
     }
     audio{opacity: 0;width: 10px;}
 
-    .wechat .right{float:right;width: 50%;position: relative;height: 40px;margin:5px;}
-    .wechat .left{float: left;width: 50%;position: relative;height: 40px;margin: 5px;}
+    .wechat .right{float:right;width: 55%;position: relative;height: 40px;margin:5px;}
+    .wechat .left{float: left;width: 55%;position: relative;height: 40px;margin: 5px;}
     .wechat img{display: inline-block;width: auto;height: 40px;}
 
-    .wechat .right .right_child{position: absolute;right: 0px ;top:0px;height: 20px;}
-    .wechat .left  .left_child{position: absolute;left: 0px;top:0px;height: 20px;}
+    .wechat .right .right_child{position: absolute;right: 0px ;top:0px;height: 40px;}
+    .wechat .left  .left_child{position: absolute;left: 0px;top:0px;height: 40px;}
 
     .text_message{position: fixed;bottom: 0px;left: 0px;height: 50px;border: 0px;width: 100%;}
     .voice_message{position: fixed;bottom: 0px;left: 0px;height: 50px;border: 0px;width: 100%;display: none;}
@@ -117,17 +117,17 @@ $signPackage = $jssdk->GetSignPackage();
             var flags = this.state.flags;
             var _self=this;
            return(
-                <div className="wechat">
+                <div className="wechat" onTouchStart={_self.voiceboxtouch}>
                     {
 
                        voiceArr.map(function(voice,index){
-                            return  flags[index]==='1'?(<div className="right"  ref={"voice"+index} onTouchStart={_self.voiceboxtouch}>
+                            return  flags[index]==='1'?(<div className="right"  ref={"voice"+index}>
                                                             <div className="right_child" alt="头像">
                                                                 <i className="iconfont" style={{color:"blue"}}>&#xe65d;</i><img src="img/1.jpg" style={{marginLeft:"10px;"}}/>
                                                             </div>
                                                             <audio controls="controls" ref={index} id={index}>
                                                                 <source src={voice} type="audio/mpeg" />
-                                                            </audio></div>):(<div className="left" ref={"voice"+index} onTouchStart={_self.voiceboxtouch}>
+                                                            </audio></div>):(<div className="left" ref={"voice"+index}>
                                                                                 <div className="left_child" alt="头像">
                                                                                     <img src="img/1.jpg" style={{marginRight:"10px;"}}/><i className="iconfont" style={{color:"gray"}}>&#xe63d;</i>
                                                                                 </div>
