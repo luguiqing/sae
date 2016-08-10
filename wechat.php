@@ -84,7 +84,15 @@ $signPackage = $jssdk->GetSignPackage();
             this.refs.uu.getDOMNode().play();*/
             /*var myVideo=document.getElementById("1");
             myVideo.play();*/
-            
+            $(".wechat>div").on('click',function(){
+                var index = $(this).index();
+                var mychoosevoide=document.getElementById(index);
+                if(mychoosevoide.paused){
+                    mychoosevoide.play();
+                }else{
+                    mychoosevoide.pause();
+                }
+            });
                    
         },
         render:function(){
@@ -96,13 +104,13 @@ $signPackage = $jssdk->GetSignPackage();
                     {
 
                        voiceArr.map(function(voice,index){
-                            return  flags[index]==='1'?(<div className="right"  ref={"voice"+index}>
+                            return  flags[index]==='1'?(<div className="right"  ref={"voice"+index} onClickCapture={_self.handleClick}>
                                                             <div className="right_child" alt="头像">
                                                                 <i className="iconfont" style={{color:"red"}}>&#xe65d;</i><img src="img/1.jpg" style={{marginLeft:"10px;"}}/>
                                                             </div>
                                                             <audio controls="controls" ref={index} id={index}>
                                                                 <source src={voice} type="audio/mpeg" />
-                                                            </audio></div>):(<div className="left" ref={"voice"+index} onClickCapture={_self.handleClick}>
+                                                            </audio></div>):(<div className="left" ref={"voice"+index}>
                                                                                 <div className="left_child" alt="头像">
                                                                                     <img src="img/1.jpg" style={{marginRight:"10px;"}}/><i className="iconfont" style={{color:"green"}}>&#xe63d;</i>
                                                                                 </div>
