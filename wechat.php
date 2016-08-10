@@ -117,17 +117,17 @@ $signPackage = $jssdk->GetSignPackage();
             var flags = this.state.flags;
             var _self=this;
            return(
-                <div className="wechat" onTouchStart={_self.voiceboxtouch}>
+                <div className="wechat">
                     {
 
                        voiceArr.map(function(voice,index){
-                            return  flags[index]==='1'?(<div className="right"  ref={"voice"+index}>
+                            return  flags[index]==='1'?(<div className="right"  ref={"voice"+index} onTouchStart={_self.voiceboxtouch}>
                                                             <div className="right_child" alt="头像">
                                                                 <i className="iconfont" style={{color:"blue"}}>&#xe65d;</i><img src="img/1.jpg" style={{marginLeft:"10px;"}}/>
                                                             </div>
                                                             <audio controls="controls" ref={index} id={index}>
                                                                 <source src={voice} type="audio/mpeg" />
-                                                            </audio></div>):(<div className="left" ref={"voice"+index}>
+                                                            </audio></div>):(<div className="left" ref={"voice"+index} onTouchStart={_self.voiceboxtouch}>
                                                                                 <div className="left_child" alt="头像">
                                                                                     <img src="img/1.jpg" style={{marginRight:"10px;"}}/><i className="iconfont" style={{color:"gray"}}>&#xe63d;</i>
                                                                                 </div>
