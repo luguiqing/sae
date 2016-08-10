@@ -32,8 +32,8 @@ $signPackage = $jssdk->GetSignPackage();
     }
     audio{opacity: 0.2;width: 10px;}
 
-    .wechat .right{float:right;width: 50%;position: relative;height: 20px;margin:5px;background-color: gray}
-    .wechat .left{float: left;width: 50%;position: relative;height: 20px;margin: 5px;background-color: gray}
+    .wechat .right{float:right;width: 50%;position: relative;height: 40px;margin:5px;background-color: gray}
+    .wechat .left{float: left;width: 50%;position: relative;height: 40px;margin: 5px;background-color: gray}
     .wechat img{display: inline-block;width: auto;height: 20px;}
 
     .wechat .right .right_child{position: absolute;right: 0px ;top:0px;height: 20px;}
@@ -84,7 +84,7 @@ $signPackage = $jssdk->GetSignPackage();
             this.refs.uu.getDOMNode().play();*/
             /*var myVideo=document.getElementById("1");
             myVideo.play();*/
-            $(".wechat>div").on('touchstart',function(){
+            $(".wechat>div").on('click',function(){
                 var index = $(this).index();
                 var mychoosevoide=document.getElementById(index);
                 if(mychoosevoide.paused){
@@ -92,9 +92,8 @@ $signPackage = $jssdk->GetSignPackage();
                 }else{
                     mychoosevoide.pause();
                 }
-                   
-                
             });
+                   
         },
         render:function(){
             var voiceArr = this.state.voiceArr;
@@ -105,7 +104,7 @@ $signPackage = $jssdk->GetSignPackage();
                     {
 
                        voiceArr.map(function(voice,index){
-                            return  flags[index]==='1'?(<div className="right"  ref={"voice"+index} onClickCapture={_self.handleClick}>
+                            return  flags[index]==='1'?(<div className="right"  ref={"voice"+index}>
                                                             <div className="right_child" alt="头像">
                                                                 <i className="iconfont" style={{color:"red"}}>&#xe65d;</i><img src="img/1.jpg" style={{marginLeft:"10px;"}}/>
                                                             </div>
@@ -155,8 +154,17 @@ $signPackage = $jssdk->GetSignPackage();
     });
     
     wx.ready(function () {
-        $("img").on("click",function(){
-            alert("jjjj");
+        $(".wechat>div").on('click',function(){
+            var index = $(this).index();
+            var mychoosevoide=document.getElementById(index);
+            if(mychoosevoide.paused){
+                mychoosevoide.play();
+            }else{
+                mychoosevoide.pause();
+            }
+        });
+        $("img").click(function(){
+            alert('dd');
         })
 
 
