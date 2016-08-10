@@ -155,22 +155,6 @@ $signPackage = $jssdk->GetSignPackage();
     });
     
     wx.ready(function () {
-        $("audio").each(function(index){
-            $(this).prev().click(function(){
-                if($(this).paused){
-                    $(this).play();
-                }
-                else{
-                    $(this).pause();
-                }
-            })
-        });
-        $(".wechat>div").click(function(){
-
-            var index = $(this).index();
-            alert("ddd");
-            $("audio").eq(index).play();
-        });
         $("img").on("click",function(){
             alert("jjjj");
         })
@@ -210,12 +194,5 @@ $signPackage = $jssdk->GetSignPackage();
           });*/
     });
   });
-</script>
-<script>
-    $(document).ready(function(){
-        $("img").on("click",function(){
-            alert("jjjj");
-        })
-    })
 </script>
 </html>
