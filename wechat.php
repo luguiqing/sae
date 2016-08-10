@@ -30,10 +30,10 @@ $signPackage = $jssdk->GetSignPackage();
       -webkit-text-stroke-width: 0.2px;
       -moz-osx-font-smoothing: grayscale;
     }
-    audio{opacity: 0;}
+    audio{opacity: 0.2;width: 10px;}
 
-    .wechat .right{float:right;width: 50%;position: relative;height: 20px;margin:5px;}
-    .wechat .left{float: left;width: 50%;position: relative;height: 20px;margin: 5px;}
+    .wechat .right{float:right;width: 50%;position: relative;height: 20px;margin:5px;background-color: gray}
+    .wechat .left{float: left;width: 50%;position: relative;height: 20px;margin: 5px;background-color: gray}
     .wechat img{display: inline-block;width: auto;height: 20px;}
 
     .wechat .right .right_child{position: absolute;right: 0px ;top:0px;height: 20px;}
@@ -64,8 +64,7 @@ $signPackage = $jssdk->GetSignPackage();
                         voiceUrl[i]=data[i].voiceUrl;
                         flag[i]=data[i].flag;
                     }
-                    _self.setState({voiceArr:voiceUrl,flags:flag});
-                    console.log(_self.state.voiceArr);            
+                    _self.setState({voiceArr:voiceUrl,flags:flag});           
                 },
                 error:function(xhr,status,err){
                     console.log(err);
@@ -75,30 +74,48 @@ $signPackage = $jssdk->GetSignPackage();
             })
         },
         componentDidMount:function(){
-            this.interval = setInterval(this.getMsg,6000);
+            this.interval = setInterval(this.getMsg,1000);
         },
         componentWillUnmount:function(){
             clearInterval(this.getMsg);
         },
+        handleClick:function(e){
+            /*alert($('.right').css("height"));
+            this.refs.uu.getDOMNode().play();*/
+            /*var myVideo=document.getElementById("1");
+            myVideo.play();*/
+            $(".wechat>div").on('touchstart',function(){
+                var index = $(this).index();
+                var mychoosevoide=document.getElementById(index);
+                if(mychoosevoide.paused){
+                    mychoosevoide.play();
+                }else{
+                    mychoosevoide.pause();
+                }
+                   
+                
+            });
+        },
         render:function(){
             var voiceArr = this.state.voiceArr;
             var flags = this.state.flags;
+            var _self=this;
            return(
                 <div className="wechat">
                     {
 
                        voiceArr.map(function(voice,index){
-                            return  flags[index]==='1'?(<div className="right">
+                            return  flags[index]==='1'?(<div className="right"  ref={"voice"+index} onClickCapture={_self.handleClick}>
                                                             <div className="right_child" alt="头像">
                                                                 <i className="iconfont" style={{color:"red"}}>&#xe65d;</i><img src="img/1.jpg" style={{marginLeft:"10px;"}}/>
                                                             </div>
-                                                            <audio controls="controls" id={index}>
+                                                            <audio controls="controls" ref={index} id={index}>
                                                                 <source src={voice} type="audio/mpeg" />
-                                                            </audio></div>):(<div className="left">
+                                                            </audio></div>):(<div className="left" ref={"voice"+index} onClickCapture={_self.handleClick}>
                                                                                 <div className="left_child" alt="头像">
                                                                                     <img src="img/1.jpg" style={{marginRight:"10px;"}}/><i className="iconfont" style={{color:"green"}}>&#xe63d;</i>
                                                                                 </div>
-                                                                                <audio controls="controls" id={index}>
+                                                                                <audio controls="controls" ref={index} id={index}>
                                                                                     <source src={voice} type="audio/mpeg" />
                                                                                 </audio></div>)
 
@@ -109,6 +126,7 @@ $signPackage = $jssdk->GetSignPackage();
            ) 
         }
     });
+   /* React.initializeTouchEvents(true);*///初始化接触事件
     ReactDOM.render(<WeChat/>,document.getElementById("container"));
 </script>
 <script>
@@ -135,6 +153,7 @@ $signPackage = $jssdk->GetSignPackage();
         "stopVoice",
       ]
     });
+    
     wx.ready(function () {
         $("audio").each(function(index){
             $(this).prev().click(function(){
@@ -145,6 +164,15 @@ $signPackage = $jssdk->GetSignPackage();
                     $(this).pause();
                 }
             })
+        });
+        $(".wechat>div").click(function(){
+
+            var index = $(this).index();
+            alert(index);
+            $("audio").eq(index).play();
+        });
+        $("img").on("click",function(){
+            alert("jjjj");
         })
 
 
@@ -154,7 +182,7 @@ $signPackage = $jssdk->GetSignPackage();
 
 
     //之前的
-      var mylocalId;
+    /*  var mylocalId;
        $("#btn1").on("click",function(){
             wx.startRecord();
             alert("开始");
@@ -179,8 +207,15 @@ $signPackage = $jssdk->GetSignPackage();
             wx.playVoice({
               localId: "https://luguiqing.applinzi.com/img/1.mp3"
             });
-          });
+          });*/
     });
   });
+</script>
+<script>
+    $(document).ready(function(){
+        $("img").on("click",function(){
+            alert("jjjj");
+        })
+    })
 </script>
 </html>

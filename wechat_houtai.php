@@ -5,7 +5,7 @@ $staff = array(
 		array("flag"=>"0","voiceUrl"=>"img/1.mp3"),
 		array("flag"=>"1","voiceUrl"=>"img/1.mp3"),
 		array("flag"=>"0","voiceUrl"=>"img/1.mp3"),
-		array("flag"=>"1","voiceUrl"=>"img/1.mp3"),
+		array("flag"=>"0","voiceUrl"=>"img/1.mp3"),
 		array("flag"=>"0","voiceUrl"=>"img/1.mp3"),
 		array("flag"=>"0","voiceUrl"=>"img/1.mp3"),
 	);
