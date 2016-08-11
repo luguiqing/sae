@@ -53,7 +53,7 @@ $signPackage = $jssdk->GetSignPackage();
 <script type="text/babel">
     var WeChat = React.createClass({
         getInitialState:function(){
-            return {voiceArr:[],flags:[],texts:[],length:0}
+            return {voiceArr:[],flags:[],texts:[],lengths:0}
         },
         getMsg:function(){
             var _self = this;
@@ -74,9 +74,9 @@ $signPackage = $jssdk->GetSignPackage();
                         voiceUrl[i]=data[i].voiceUrl;
                         flag[i]=data[i].flag;
                     }
-                    _self.setState({voiceArr:voiceUrl,flags:flag,texts:text,length:data.length});
-                    console.log(_self.state.texts);
-                    console.log(_self.state.texts);         
+                    _self.setState({voiceArr:voiceUrl,flags:flag,texts:text,lengths:data.length});
+                    $('#'+(_self.state.lengths-1)).parent().css({marginBottom:'55px'});
+                    console.log(_self.state.texts);        
                 },
                 error:function(xhr,status,err){
                     console.log(err);
@@ -116,14 +116,14 @@ $signPackage = $jssdk->GetSignPackage();
             return voiceArr.map(function(voice,index){
                 if(flags[index]==='1'){
                     if(voice==='0'){
-                        return (<div className="right"  ref={"voice"+index}>
+                        return (<div className="right"  key={index}>
                                     <div className="right_child" alt="头像">
                                         <span style={{width:'120px',height:'40px',display:'inline-block',textAlign:"right"}}>{_self.state.texts[index]}</span><img src="img/1.jpg" style={{marginLeft:"10px",marginBottom:"-12px"}}/>
                                     </div>
                                 </div>)
 
                     }else{
-                        return (<div className="right"  ref={"voice"+index}>
+                        return (<div className="right"  key={index}>
                                     <div className="right_child" alt="头像">
                                         <i className="iconfont" style={{color:"blue"}}>&#xe65d;</i><img src="img/1.jpg" style={{marginLeft:"10px",marginBottom:"-10px"}}/>
                                     </div>
@@ -133,7 +133,7 @@ $signPackage = $jssdk->GetSignPackage();
                                 </div>)
                     }
                 }else{
-                    return  (<div className="left" ref={"voice"+index}>
+                    return  (<div className="left" key={index}>
                                     <div className="left_child" alt="头像">
                                         <img src="img/1.jpg" style={{marginRight:"10px",marginBottom:"-10px"}}/><i className="iconfont" style={{color:"gray"}}>&#xe63d;</i>
                                     </div>
@@ -153,20 +153,22 @@ $signPackage = $jssdk->GetSignPackage();
                     {
                        _self.handleMsg()
                     }
-                    <div className="text_message">
-                        <form>
-                            <button onClick={_self.textToggleChange} type="button">文本</button>
-                            <input onChange={this.onChange}/>
-                            <button type="button">发送文字</button>
-                        </form>
-                    </div>
-                    <div className="voice_message">
-                        <form>
-                            <button onClick={_self.voiceToggleChange} type="button">切换</button>
-                            <button style={{width:"70%"}} type="button">录音</button>
-                            <button type="button">发送语音</button>
-                        </form>
-                    </div>
+                    <footer style={{border:'0px'}}>
+                        <div className="text_message">
+                            <form>
+                                <button onClick={_self.textToggleChange} type="button">文本</button>
+                                <input onChange={this.onChange}/>
+                                <button type="button">发送</button>
+                            </form>
+                        </div>
+                        <div className="voice_message">
+                            <form>
+                                <button onClick={_self.voiceToggleChange} type="button">切换</button>
+                                <button style={{width:"70%"}} type="button">录音</button>
+                                <button type="button">发送</button>
+                            </form>
+                        </div>
+                    </footer>
                 </div>
            ) 
         }
