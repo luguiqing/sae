@@ -32,9 +32,9 @@ $signPackage = $jssdk->GetSignPackage();
     }
     audio{opacity: 0;width: 10px;}
 
-    .wechat .right{float:right;width: 65%;position: relative;height: 40px;margin:5px;}
-    .wechat .left{float: left;width:65%;position: relative;height: 40px;margin: 5px;}
-    .wechat img{display: inline-block;width: auto;height: 50px;width: 50px;border-radius: 50%}
+    .wechat .right{float:right;width: 55%;position: relative;height: 40px;margin:5px;}
+    .wechat .left{float: left;width: 55%;position: relative;height: 40px;margin: 5px;}
+    .wechat img{display: inline-block;width: auto;height: 40px;}
 
     .wechat .right .right_child{position: absolute;right: 0px ;top:0px;height: 40px;}
     .wechat .left  .left_child{position: absolute;left: 0px;top:0px;height: 40px;}
@@ -53,7 +53,7 @@ $signPackage = $jssdk->GetSignPackage();
 <script type="text/babel">
     var WeChat = React.createClass({
         getInitialState:function(){
-            return {voiceArr:[],flags:[],texts:[],length:0}
+            return {voiceArr:[],flags:[]}
         },
         getMsg:function(){
             var _self = this;
@@ -64,19 +64,12 @@ $signPackage = $jssdk->GetSignPackage();
                 success:function(data){
                     var voiceUrl =[];
                     var flag=[];
-                    var text=[];
+                   /* _self.setState({voiceArr:data});*/
                     for(var i=0;i<data.length;i++){
-                        if(data[i].flag==="1"){
-                            if(data[i].voiceUrl==="0"){
-                                text[i]=data[i].stringText;
-                            }
-                        }
                         voiceUrl[i]=data[i].voiceUrl;
                         flag[i]=data[i].flag;
                     }
-                    _self.setState({voiceArr:voiceUrl,flags:flag,texts:text,length:data.length});
-                    console.log(_self.state.texts);
-                    console.log(_self.state.texts);         
+                    _self.setState({voiceArr:voiceUrl,flags:flag});          
                 },
                 error:function(xhr,status,err){
                     console.log(err);
@@ -99,7 +92,7 @@ $signPackage = $jssdk->GetSignPackage();
             });
         },
         componentWillUnmount:function(){
-            /*clearInterval(this.getMsg);*/
+            clearInterval(this.getMsg);
         },
         textToggleChange:function(){
             $(".text_message").css({display:'none'});
@@ -109,40 +102,8 @@ $signPackage = $jssdk->GetSignPackage();
             $(".voice_message").css({display:'none'});
             $(".text_message").css({display:'block'});
         },
-        handleMsg:function(){
-            var voiceArr = this.state.voiceArr;
-            var flags = this.state.flags;
-            var _self=this;
-            return voiceArr.map(function(voice,index){
-                if(flags[index]==='1'){
-                    if(voice==='0'){
-                        return (<div className="right"  ref={"voice"+index}>
-                                    <div className="right_child" alt="头像">
-                                        <span style={{width:'120px',height:'40px',display:'inline-block'}}>{_self.state.texts[index]}<span><img src="img/1.jpg" style={{marginLeft:"10px;"}}/>
-                                    </div>
-                                </div>)
-
-                    }else{
-                        return (<div className="right"  ref={"voice"+index}>
-                                    <div className="right_child" alt="头像">
-                                        <i className="iconfont" style={{color:"blue"}}>&#xe65d;</i><img src="img/1.jpg" style={{marginLeft:"10px;"}}/>
-                                    </div>
-                                    <audio controls="controls" ref={index} id={index}>
-                                        <source src={voice} type="audio/mpeg" />
-                                    </audio>
-                                </div>)
-                    }
-                }else{
-                    return  (<div className="left" ref={"voice"+index}>
-                                    <div className="left_child" alt="头像">
-                                        <img src="img/1.jpg" style={{marginRight:"10px;"}}/><i className="iconfont" style={{color:"gray"}}>&#xe63d;</i>
-                                    </div>
-                                    <audio controls="controls" ref={index} id={index}>
-                                        <source src={voice} type="audio/mpeg" />
-                                    </audio>
-                            </div>)
-                }
-            });
+        handleSubmit:function(){
+            alert("发送成功");
         },
         render:function(){
             var voiceArr = this.state.voiceArr;
@@ -151,17 +112,34 @@ $signPackage = $jssdk->GetSignPackage();
            return(
                 <div className="wechat">
                     {
-                       _self.handleMsg()
+
+                       voiceArr.map(function(voice,index){
+                            return  flags[index]==='1'?(<div className="right"  ref={"voice"+index}>
+                                                            <div className="right_child" alt="头像">
+                                                                <i className="iconfont" style={{color:"blue"}}>&#xe65d;</i><img src="img/1.jpg" style={{marginLeft:"10px;"}}/>
+                                                            </div>
+                                                            <audio controls="controls" ref={index} id={index}>
+                                                                <source src={voice} type="audio/mpeg" />
+                                                            </audio></div>):(<div className="left" ref={"voice"+index}>
+                                                                                <div className="left_child" alt="头像">
+                                                                                    <img src="img/1.jpg" style={{marginRight:"10px;"}}/><i className="iconfont" style={{color:"gray"}}>&#xe63d;</i>
+                                                                                </div>
+                                                                                <audio controls="controls" ref={index} id={index}>
+                                                                                    <source src={voice} type="audio/mpeg" />
+                                                                                </audio></div>)
+
+                           })
+
                     }
                     <div className="text_message">
-                        <form>
+                        <form onSubmit={this.handleSubmit}>
                             <button onClick={_self.textToggleChange} type="button">文本</button>
                             <input onChange={this.onChange}/>
                             <button type="button">发送文字</button>
                         </form>
                     </div>
                     <div className="voice_message">
-                        <form>
+                        <form onSubmit={this.handleSubmit}>
                             <button onClick={_self.voiceToggleChange} type="button">切换</button>
                             <button style={{width:"70%"}} type="button">录音</button>
                             <button type="button">发送语音</button>
