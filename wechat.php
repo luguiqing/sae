@@ -158,14 +158,14 @@ $signPackage = $jssdk->GetSignPackage();
                             <form>
                                 <button onClick={_self.textToggleChange} type="button">文本</button>
                                 <input onChange={this.onChange}/>
-                                <button type="button" id="sendbtn">发送</button>
+                                <button type="button" id="sendtxtbtn">发送</button>
                             </form>
                         </div>
                         <div className="voice_message">
                             <form>
                                 <button onClick={_self.voiceToggleChange} type="button">切换</button>
                                 <button style={{width:"70%"}} type="button">录音</button>
-                                <button type="button" id="sendbtn">发送</button>
+                                <button type="button" id="sendvoicebtn">发送</button>
                             </form>
                         </div>
                     </footer>
@@ -206,7 +206,12 @@ $signPackage = $jssdk->GetSignPackage();
             alert('dd');
         });
         $("#sendbtn").on("click",function(){
-            alert("点击了按钮");
+            /*alert("点击了按钮");*/
+            if($(".text_message input").val()){
+                $(".wechat div:last").append("<div>$(".text_message input").val()</div>")
+            }else{
+                alert("发送的信息不能为空！");
+            }
         })
 
     });
