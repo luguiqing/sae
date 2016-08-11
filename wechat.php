@@ -158,14 +158,14 @@ $signPackage = $jssdk->GetSignPackage();
                             <form>
                                 <button onClick={_self.textToggleChange} type="button">文本</button>
                                 <input onChange={this.onChange}/>
-                                <button type="button">发送</button>
+                                <button type="button" id="sendbtn">发送</button>
                             </form>
                         </div>
                         <div className="voice_message">
                             <form>
                                 <button onClick={_self.voiceToggleChange} type="button">切换</button>
                                 <button style={{width:"70%"}} type="button">录音</button>
-                                <button type="button">发送</button>
+                                <button type="button" id="sendbtn">发送</button>
                             </form>
                         </div>
                     </footer>
@@ -179,12 +179,12 @@ $signPackage = $jssdk->GetSignPackage();
 <script>
   $(document).ready(function(){
     wx.config({
-      debug: true,
-      appId: '<?php echo $signPackage["appId"];?>',
-      timestamp: <?php echo $signPackage["timestamp"];?>,
-      nonceStr: '<?php echo $signPackage["nonceStr"];?>',
-      signature: '<?php echo $signPackage["signature"];?>',
-      jsApiList: [
+        debug: true,
+        appId: '<?php echo $signPackage["appId"];?>',
+        timestamp: <?php echo $signPackage["timestamp"];?>,
+        nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+        signature: '<?php echo $signPackage["signature"];?>',
+        jsApiList: [
         // 所有要调用的 API 都要加到这个列表中
         "onMenuShareTimeline",
         "openLocation",
@@ -198,21 +198,15 @@ $signPackage = $jssdk->GetSignPackage();
         "playVoice",
         "pauseVoice",
         "stopVoice",
-      ]
+          ]
     });
     
     wx.ready(function () {
-        $(".wechat>div").on('click',function(){
-            var index = $(this).index();
-            var mychoosevoide=document.getElementById(index);
-            if(mychoosevoide.paused){
-                mychoosevoide.play();
-            }else{
-                mychoosevoide.pause();
-            }
-        });
         $("img").click(function(){
             alert('dd');
+        });
+        $("#sendbtn").on("click",function(){
+            alert("点击了按钮");
         })
 
     });
