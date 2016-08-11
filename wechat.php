@@ -88,7 +88,7 @@ $signPackage = $jssdk->GetSignPackage();
         componentDidMount:function(){
             /*this.interval = setInterval(this.getMsg,5000);*/
             this.getMsg();
-            $(".wechat>div").on('click',function(){
+            $(".wechat>div").on('touchstart',function(){
                 var index = $(this).index();
                 var mychoosevoide=document.getElementById(index);
                 if(mychoosevoide.paused){
