@@ -32,12 +32,12 @@ $signPackage = $jssdk->GetSignPackage();
     }
     audio{opacity: 0;width: 10px;}
 
-    .wechat .right{float:right;width: 65%;position: relative;height: 40px;margin:5px;}
-    .wechat .left{float: left;width:65%;position: relative;height: 40px;margin: 5px;}
+    .wechat .right{float:right;width: 65%;position: relative;height: 50px;margin:5px;}
+    .wechat .left{float: left;width:65%;position: relative;height: 50px;margin: 5px;}
     .wechat img{display: inline-block;width: auto;height: 50px;width: 50px;border-radius: 50%}
 
-    .wechat .right .right_child{position: absolute;right: 0px ;top:0px;height: 40px;}
-    .wechat .left  .left_child{position: absolute;left: 0px;top:0px;height: 40px;}
+    .wechat .right .right_child{position: absolute;right: 0px ;top:0px;height: 50px;}
+    .wechat .left  .left_child{position: absolute;left: 0px;top:0px;height: 50px;}
 
     .text_message{position: fixed;bottom: 0px;left: 0px;height: 50px;border: 0px;width: 100%;}
     .voice_message{position: fixed;bottom: 0px;left: 0px;height: 50px;border: 0px;width: 100%;display: none;}
@@ -118,14 +118,14 @@ $signPackage = $jssdk->GetSignPackage();
                     if(voice==='0'){
                         return (<div className="right"  ref={"voice"+index}>
                                     <div className="right_child" alt="头像">
-                                        <span style={{width:'120px',height:'40px',display:'inline-block'}}>{_self.state.texts[index]}</span><img src="img/1.jpg" style={{marginLeft:"10px;"}}/>
+                                        <span style={{width:'120px',height:'40px',display:'inline-block',textAlign:"right"}}>{_self.state.texts[index]}</span><img src="img/1.jpg" style={{marginLeft:"10px",marginBottom:"-12px"}}/>
                                     </div>
                                 </div>)
 
                     }else{
                         return (<div className="right"  ref={"voice"+index}>
                                     <div className="right_child" alt="头像">
-                                        <i className="iconfont" style={{color:"blue"}}>&#xe65d;</i><img src="img/1.jpg" style={{marginLeft:"10px;"}}/>
+                                        <i className="iconfont" style={{color:"blue"}}>&#xe65d;</i><img src="img/1.jpg" style={{marginLeft:"10px",marginBottom:"-10px"}}/>
                                     </div>
                                     <audio controls="controls" ref={index} id={index}>
                                         <source src={voice} type="audio/mpeg" />
@@ -135,7 +135,7 @@ $signPackage = $jssdk->GetSignPackage();
                 }else{
                     return  (<div className="left" ref={"voice"+index}>
                                     <div className="left_child" alt="头像">
-                                        <img src="img/1.jpg" style={{marginRight:"10px;"}}/><i className="iconfont" style={{color:"gray"}}>&#xe63d;</i>
+                                        <img src="img/1.jpg" style={{marginRight:"10px",marginBottom:"-10px"}}/><i className="iconfont" style={{color:"gray"}}>&#xe63d;</i>
                                     </div>
                                     <audio controls="controls" ref={index} id={index}>
                                         <source src={voice} type="audio/mpeg" />
