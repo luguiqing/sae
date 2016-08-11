@@ -118,7 +118,7 @@ $signPackage = $jssdk->GetSignPackage();
                     if(voice==='0'){
                         return (<div className="right"  ref={"voice"+index}>
                                     <div className="right_child" alt="头像">
-                                        <span style={{width:'120px',height:'40px',display:'inline-block'}}>{_self.state.texts[index]}<span><img src="img/1.jpg" style={{marginLeft:"10px;"}}/>
+                                        <span style={{width:'120px',height:'40px',display:'inline-block'}}>{_self.state.texts[index]}</span><img src="img/1.jpg" style={{marginLeft:"10px;"}}/>
                                     </div>
                                 </div>)
 
