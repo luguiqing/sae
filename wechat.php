@@ -235,7 +235,7 @@ $signPackage = $jssdk->GetSignPackage();
         $("#sendvoicebtn").on("click",function(){
             alert("播放");
             wx.playVoice({
-                localId: localId;
+                localId: localId
             });
         });
     });
