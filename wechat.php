@@ -205,7 +205,7 @@ $signPackage = $jssdk->GetSignPackage();
         $("#sendtxtbtn").on("click",function(){
             if($(".text_message input").val()){
                 alert($(".text_message input").val());
-                $("footer").before("<div class='right'><div class='right_child' alt='头像'><span style='width:120px;height:40px;display:inline-block;text-align:right'>"+$(".text_message input").val()+"</span><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div></div>");
+                $("footer").before("<div class='right box'><div class='right_child' alt='头像'><span style='width:120px;height:40px;display:inline-block;text-align:right'>"+$(".text_message input").val()+"</span><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div></div>");
                 $(".text_message input").val('');
             }else{
                 alert("发送的信息不能为空！");
@@ -227,7 +227,7 @@ $signPackage = $jssdk->GetSignPackage();
                             var serverId = res.serverId;
                             var index = $('.wechat>div:last').index()+1;
                             alert(index);
-                            $("footer").before("<div class='right'><div class='right_child' alt='头像'><i class='iconfont' style='color:blue'>&#xe65d;</i><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div><audio controls='controls' id="+index+"><source src="+serverId+"type='audio/mpeg'/></audio></div>");
+                            $("footer").before("<div class='right box'><div class='right_child' alt='头像'><i class='iconfont' style='color:blue'>&#xe65d;</i><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div><audio controls='controls' id="+index+"><source src="+serverId+"type='audio/mpeg'/></audio></div>");
                        }
                     });
                 },
@@ -236,7 +236,7 @@ $signPackage = $jssdk->GetSignPackage();
                 }
             });
         });
-        $(".wechat").on('click','.box',function(){
+        $(".container").on('click','.box',function(){
             var index = $(this).index();
             alert("eee"+index);
             var mychoosevoide=document.getElementById(index);
