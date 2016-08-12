@@ -209,7 +209,7 @@ $signPackage = $jssdk->GetSignPackage();
             alert("点击了按钮");
             if($(".text_message input").val()){
                 alert($(".text_message input").val());
-                $(".wechat div:last").after("<div>"+$(".text_message input").val()+"</div>");
+                $("footer").before("<div>"+$(".text_message input").val()+"</div>");
             }else{
                 alert("发送的信息不能为空！");
             }
