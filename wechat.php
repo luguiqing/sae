@@ -91,7 +91,6 @@ $signPackage = $jssdk->GetSignPackage();
         componentDidMount:function(){
             /*this.interval = setInterval(this.getMsg,5000);*/
             this.getMsg();
-            $(".wechat div:last").css("margin-bottom","55px");
         },
         componentWillUnmount:function(){
             /*clearInterval(this.getMsg);*/
@@ -159,7 +158,7 @@ $signPackage = $jssdk->GetSignPackage();
                         <div className="voice_message">
                             <form>
                                 <button onClick={_self.voiceToggleChange} type="button">切换</button>
-                                <button style={{width:"70%"}} type="button">录音</button>
+                                <button style={{width:"70%"}} type="button" id="voicebtn">录音</button>
                                 <button type="button" id="sendvoicebtn">发送</button>
                             </form>
                         </div>
@@ -197,6 +196,7 @@ $signPackage = $jssdk->GetSignPackage();
     });
     
     wx.ready(function () {
+        var localId;
         $("img").click(function(){
             alert('dd');
         });
@@ -215,12 +215,22 @@ $signPackage = $jssdk->GetSignPackage();
             if($(".text_message input").val()){
                 alert($(".text_message input").val());
                 $("footer").before("<div class='right'><div class='right_child' alt='头像'><span style='width:120px;height:40px;display:inline-block;text-align:right'>"+$(".text_message input").val()+"</span><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div></div>");
-                $(".wechat ")
+                $(".text_message input").val('');
             }else{
                 alert("发送的信息不能为空！");
             }
         });
-
+        $("#voicebtn").on("touchstart",function(){
+            wx.startRecord();
+        });
+        $("#voicebtn").on("touchend",function(){
+            success: function (res) {
+                localId = res.localId;
+            }
+        });
+        $("#sendvoicebtn").on("click",function(){
+            localId: localId
+        });
     });
   });
 </script>
