@@ -206,6 +206,16 @@ $signPackage = $jssdk->GetSignPackage();
         $("img").click(function(){
             alert('dd');
         });
+        $(".wechat>div").on('click',function(){
+                var index = $(this).index();
+                var mychoosevoide=document.getElementById(index);
+                alert(index);
+                if(mychoosevoide.paused){
+                    mychoosevoide.play();
+                }else{
+                    mychoosevoide.pause();
+                }
+            });
         /*$("#sendtxtbtn").on("click",function(){
             if($(".text_message input").val()){
                 alert($(".text_message input").val());
