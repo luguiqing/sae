@@ -43,7 +43,7 @@ $signPackage = $jssdk->GetSignPackage();
     .text_message{position: fixed;bottom: 0px;left: 0px;height: 50px;border: 0px;width: 100%;}
     .voice_message{position: fixed;bottom: 0px;left: 0px;height: 50px;border: 0px;width: 100%;display: none;margin-bottom: 0px!important;}
     button{height: 50px;border:0px;display: inline-block;width: 15%}
-    input{height: 50px;border: 0px;display: inline-block;width: 70%;}
+    input{height: 48px;border: 0px;display: inline-block;width: 70%;border-top: 1px solid #B1E6E6;}
 
     .wechat>div:last-of-type{margin-bottom: 55px!important;}
 </style>
@@ -223,9 +223,6 @@ $signPackage = $jssdk->GetSignPackage();
         $("#voicebtn").on("touchstart",function(){
             wx.startRecord();
         });
-        $("#voicebtn").on("touchmove",function(e){
-            e.preventDefault();
-        });
         $("#voicebtn").on("touchend",function(){
             alert("2");
             wx.stopRecord({
@@ -236,6 +233,11 @@ $signPackage = $jssdk->GetSignPackage();
         });
         $("#sendvoicebtn").on("click",function(){
             alert("播放");
+            wx.stopRecord({
+                success: function (res) {
+                    localId = res.localId;
+                }
+            });
             wx.playVoice({
                 localId: localId
             });
