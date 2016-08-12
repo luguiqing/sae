@@ -41,7 +41,7 @@ $signPackage = $jssdk->GetSignPackage();
     .wechat .left  .left_child{position: absolute;left: 0px;top:0px;height: 50px;}
 
     .text_message{position: fixed;bottom: 0px;left: 0px;height: 50px;border: 0px;width: 100%;}
-    .voice_message{position: fixed;bottom: 0px;left: 0px;height: 50px;border: 0px;width: 100%;display: none;}
+    .voice_message{position: fixed;bottom: 0px;left: 0px;height: 50px;border: 0px;width: 100%;display: none;margin-bottom: 0px;}
     button{height: 50px;border:0px;display: inline-block;width: 15%}
     input{height: 50px;border: 0px;display: inline-block;width: 70%;}
 
@@ -221,7 +221,6 @@ $signPackage = $jssdk->GetSignPackage();
             }
         });
         $("#voicebtn").on("touchstart",function(){
-            alert("1");
             wx.startRecord();
         });
         $("#voicebtn").on("touchend",function(){
