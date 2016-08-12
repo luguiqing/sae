@@ -41,7 +41,7 @@ $signPackage = $jssdk->GetSignPackage();
     .wechat .left  .left_child{position: absolute;left: 0px;top:0px;height: 50px;}
 
     .text_message{position: fixed;bottom: 0px;left: 0px;height: 50px;border: 0px;width: 100%;}
-    .voice_message{position: fixed;bottom: 0px;left: 0px;height: 50px;border: 0px;width: 100%;display: none;margin-bottom: 0px;}
+    .voice_message{position: fixed;bottom: 0px;left: 0px;height: 50px;border: 0px;width: 100%;display: none;margin-bottom: 0px!important;}
     button{height: 50px;border:0px;display: inline-block;width: 15%}
     input{height: 50px;border: 0px;display: inline-block;width: 70%;}
 
@@ -152,14 +152,14 @@ $signPackage = $jssdk->GetSignPackage();
                             <form>
                                 <button onClick={_self.textToggleChange} type="button">文本</button>
                                 <input onChange={this.onChange}/>
-                                <button type="button" id="sendtxtbtn">发送</button>
+                                <button type="button" id="sendtxtbtn" style={{color:'#fff',backgroundColor:'green'}}>发送</button>
                             </form>
                         </div>
                         <div className="voice_message">
                             <form>
                                 <button onClick={_self.voiceToggleChange} type="button">切换</button>
                                 <button style={{width:"70%"}} type="button" id="voicebtn">录音</button>
-                                <button type="button" id="sendvoicebtn">发送</button>
+                                <button type="button" id="sendvoicebtn" style={{color:'#fff',backgroundColor:'green'}}>发送</button>
                             </form>
                         </div>
                     </footer>
@@ -221,6 +221,7 @@ $signPackage = $jssdk->GetSignPackage();
             }
         });
         $("#voicebtn").on("touchstart",function(){
+            e.preventDefault();
             wx.startRecord();
         });
         $("#voicebtn").on("touchend",function(){
