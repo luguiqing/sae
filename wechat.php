@@ -206,7 +206,7 @@ $signPackage = $jssdk->GetSignPackage();
         $(".wechat>div").on('click',function(){
                 var index = $(this).index();
                 alert("eee");
-                var mychoosevoide=$('#'+index);
+                var mychoosevoide=document.getElementById(index);
                 if(mychoosevoide.paused){
                     mychoosevoide.play();
                 }else{
@@ -220,6 +220,7 @@ $signPackage = $jssdk->GetSignPackage();
                 $(".text_message input").val('');
             }else{
                 alert("发送的信息不能为空！");
+                alert($('.wechat>div:last').index());
             }
         });
         $("#voicebtn").on("touchstart",function(){
