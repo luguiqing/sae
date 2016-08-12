@@ -221,8 +221,10 @@ $signPackage = $jssdk->GetSignPackage();
             }
         });
         $("#voicebtn").on("touchstart",function(){
-            e.preventDefault();
             wx.startRecord();
+        });
+        $("#voicebtn").on("touchmove",function(){
+            e.preventDefault();
         });
         $("#voicebtn").on("touchend",function(){
             alert("2");
