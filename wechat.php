@@ -206,10 +206,9 @@ $signPackage = $jssdk->GetSignPackage();
             alert('dd');
         });
         $("#sendtxtbtn").on("click",function(){
-            alert("点击了按钮");
             if($(".text_message input").val()){
                 alert($(".text_message input").val());
-                $("footer").before("<div>"+$(".text_message input").val()+"</div>");
+                $("footer").before("<div class='right'><div class='right_child' alt='头像'><span style='width:120px;height:40px;display:inline-block;text-align:right'>"+$(".text_message input").val()+"</span><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div></div>");
             }else{
                 alert("发送的信息不能为空！");
             }
