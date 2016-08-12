@@ -206,7 +206,7 @@ $signPackage = $jssdk->GetSignPackage();
         $(".wechat>div").on('click',function(){
                 var index = $(this).index();
                 alert("eee");
-                var mychoosevoide=document.getElementById(index);
+                var mychoosevoide=$('#'+index);
                 if(mychoosevoide.paused){
                     mychoosevoide.play();
                 }else{
