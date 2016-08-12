@@ -208,7 +208,7 @@ $signPackage = $jssdk->GetSignPackage();
         $("#sendtxtbtn").on("click",function(){
             alert("点击了按钮");
             if($(".text_message input").val()){
-                $(".wechat div:last").append("<div>"+$(".text_message input").val()+"</div>");
+                $(".wechat div:last").after("<div>"+$(".text_message input").val()+"</div>");
             }else{
                 alert("发送的信息不能为空！");
             }
