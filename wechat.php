@@ -220,6 +220,7 @@ $signPackage = $jssdk->GetSignPackage();
             wx.stopRecord({
                 success: function (res) {
                     localId = res.localId;
+                    alert(localId);
                     wx.uploadVoice({
                         localId: localId,
                         isShowProgressTips: 1,
@@ -236,7 +237,7 @@ $signPackage = $jssdk->GetSignPackage();
                 }
             });
         });
-        $(".container .wechat").on('click','.box',function(){
+        $(".wechat").on('click','.box',function(){
             var index = $(this).index();
             alert("eee"+index);
             var mychoosevoide=document.getElementById(index);
