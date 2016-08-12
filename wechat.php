@@ -173,7 +173,7 @@ $signPackage = $jssdk->GetSignPackage();
 <script>
   $(document).ready(function(){
     wx.config({
-        debug: true,
+        /*debug: true,*/
         appId: '<?php echo $signPackage["appId"];?>',
         timestamp: <?php echo $signPackage["timestamp"];?>,
         nonceStr: '<?php echo $signPackage["nonceStr"];?>',
@@ -221,9 +221,11 @@ $signPackage = $jssdk->GetSignPackage();
             }
         });
         $("#voicebtn").on("touchstart",function(){
+            alert("1");
             wx.startRecord();
         });
         $("#voicebtn").on("touchend",function(){
+            alert("2");
             wx.stopRecord({
                 success: function (res) {
                     localId = res.localId;
@@ -231,7 +233,10 @@ $signPackage = $jssdk->GetSignPackage();
             });
         });
         $("#sendvoicebtn").on("click",function(){
-            localId: localId
+            alert("播放");
+            wx.playVoice({
+                localId: localId;
+            });
         });
     });
   });
