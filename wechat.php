@@ -228,10 +228,10 @@ $signPackage = $jssdk->GetSignPackage();
             wx.stopRecord({
                 success: function (res) {
                     localId = res.localId;
+                    wx.playVoice({
+                        localId: localId
+                    });
                 }
-            });
-            wx.playVoice({
-                localId: localId
             });
         });
     });
