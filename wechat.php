@@ -192,6 +192,8 @@ $signPackage = $jssdk->GetSignPackage();
         "playVoice",
         "pauseVoice",
         "stopVoice",
+        "uploadVoice",
+        "downloadVoice"
           ]
     });
     
