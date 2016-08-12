@@ -199,6 +199,7 @@ $signPackage = $jssdk->GetSignPackage();
     
     wx.ready(function () {
         var localId;
+        var serverId;
         $("img").click(function(){
             alert('dd');
         });
@@ -225,10 +226,17 @@ $signPackage = $jssdk->GetSignPackage();
                         localId: localId,
                         isShowProgressTips: 1,
                         success: function (res) {
-                            var serverId = res.serverId;
-                            var index = $('.wechat>div:last').index()+1;
-                            alert(serverId);
-                            $("footer").before("<div class='right box'><div class='right_child' alt='头像'><i class='iconfont' style='color:blue'>&#xe65d;</i><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div><audio controls='controls' id="+index+"><source src="+serverId+"type='audio/mpeg'/></audio></div>");
+                            serverId = res.serverId;
+                            wx.downloadVoice({
+                                serverId:'serverId',
+                                isShowProgressTips: 1,
+                                success: function (res) { 
+                                    var localId1 = res.localId;
+                                    alert(localId1);
+                                    var index = $('.wechat>div:last').index()+1;
+                                    $("footer").before("<div class='right box'><div class='right_child' alt='头像'><i class='iconfont' style='color:blue'>&#xe65d;</i><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div><audio controls='controls' id="+index+"><source src="+localId1+"type='audio/mpeg'/></audio></div>");
+                                }
+                            });
                        }
                     });
                 },
