@@ -158,7 +158,7 @@ $signPackage = $jssdk->GetSignPackage();
                         <div className="voice_message">
                             <form>
                                 <button onClick={_self.voiceToggleChange} type="button">切换</button>
-                                <button style={{width:"70%"}} type="button" id="voicebtn">录音</button>
+                                <button style={{width:"70%"}} type="button" id="voicebtn">点击录音</button>
                                 <button type="button" id="sendvoicebtn" style={{color:'#fff',backgroundColor:'green'}}>发送</button>
                             </form>
                         </div>
@@ -228,8 +228,13 @@ $signPackage = $jssdk->GetSignPackage();
             wx.stopRecord({
                 success: function (res) {
                     localId = res.localId;
-                    wx.playVoice({
-                        localId: localId
+                    wx.uploadVoice({
+                        localId: localId,
+                        isShowProgressTips: 1,
+                        success: function (res) {
+                            var serverId = res.serverId;
+                            $("footer").before("<div class='right'><div class='right_child' alt='头像'><span style='width:120px;height:40px;display:inline-block;text-align:right'>语言上传成功</span><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div></div>");
+                       }
                     });
                 }
             });
