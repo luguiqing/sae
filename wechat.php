@@ -226,7 +226,7 @@ $signPackage = $jssdk->GetSignPackage();
                         success: function (res) {
                             var serverId = res.serverId;
                             var index = $('.wechat>div:last').index()+1;
-                            alert(index);
+                            alert(serverId);
                             $("footer").before("<div class='right box'><div class='right_child' alt='头像'><i class='iconfont' style='color:blue'>&#xe65d;</i><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div><audio controls='controls' id="+index+"><source src="+serverId+"type='audio/mpeg'/></audio></div>");
                        }
                     });
@@ -236,7 +236,7 @@ $signPackage = $jssdk->GetSignPackage();
                 }
             });
         });
-        $(".container").on('click','.box',function(){
+        $(".container .wechat").on('click','.box',function(){
             var index = $(this).index();
             alert("eee"+index);
             var mychoosevoide=document.getElementById(index);
