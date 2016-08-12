@@ -205,7 +205,7 @@ $signPackage = $jssdk->GetSignPackage();
         $("img").click(function(){
             alert('dd');
         });
-        $("#sendbtn").on("click",function(){
+        $("#sendtxtbtn").on("click",function(){
             alert("点击了按钮");
             if($(".text_message input").val()){
                 $(".wechat div:last").append("<div>"+$(".text_message input").val()+"</div>");
