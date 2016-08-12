@@ -91,7 +91,7 @@ $signPackage = $jssdk->GetSignPackage();
             $(".wechat>div").on('click',function(){
                 var index = $(this).index();
                 var mychoosevoide=document.getElementById(index);
-                alert(index);
+                alert(index+'e');
                 if(mychoosevoide.paused){
                     mychoosevoide.play();
                 }else{
@@ -208,8 +208,8 @@ $signPackage = $jssdk->GetSignPackage();
         });
         $(".wechat>div").on('click',function(){
                 var index = $(this).index();
+                alert("eee");
                 var mychoosevoide=document.getElementById(index);
-                alert(index);
                 if(mychoosevoide.paused){
                     mychoosevoide.play();
                 }else{
