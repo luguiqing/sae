@@ -223,7 +223,7 @@ $signPackage = $jssdk->GetSignPackage();
         $("#voicebtn").on("touchstart",function(){
             wx.startRecord();
         });
-        $("#voicebtn").on("touchmove",function(){
+        $("#voicebtn").on("touchmove",function(e){
             e.preventDefault();
         });
         $("#voicebtn").on("touchend",function(){
