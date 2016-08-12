@@ -32,7 +32,7 @@ $signPackage = $jssdk->GetSignPackage();
     }
     audio{opacity: 0;width: 10px;}
 
-    .wechat .right{float:right;width: 55%;position: relative;height: 50px;margin:5px;}
+    .wechat .right{float:right;width: 65%;position: relative;height: 50px;margin:5px;}
     .wechat .left{float: left;width:55%;position: relative;height: 50px;margin: 5px;}
     .wechat img{display: inline-block;width: auto;height: 50px;width: 50px;border-radius: 50%}
 
