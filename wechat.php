@@ -41,7 +41,7 @@ $signPackage = $jssdk->GetSignPackage();
     .wechat .left  .left_child{position: absolute;left: 0px;top:0px;height: 50px;}
 
     .text_message{position: fixed;bottom: 0px;left: 0px;height: 50px;border: 0px;width: 100%;}
-    .voice_message{position: fixed;bottom: 0px;left: 0px;height: 50px;border: 0px;width: 100%;display: none;margin-bottom: 0px!important;}
+    .voice_message{position: fixed;bottom: 0px;left: 0px;height: 50px;border: 0px;width: 100%;display: none;}
     button{height: 50px;border:0px;display: inline-block;width: 15%}
     input{height: 48px;border: 0px;display: inline-block;width: 70%;border-top: 1px solid #B1E6E6;}
 
@@ -202,17 +202,6 @@ $signPackage = $jssdk->GetSignPackage();
         $("img").click(function(){
             alert('dd');
         });
-        $(".wechat div:last").css("margin-bottom","55px");
-        $(".wechat>div").on('click',function(){
-                var index = $(this).index();
-                alert("eee");
-                var mychoosevoide=document.getElementById(index);
-                if(mychoosevoide.paused){
-                    mychoosevoide.play();
-                }else{
-                    mychoosevoide.pause();
-                }
-            });
         $("#sendtxtbtn").on("click",function(){
             if($(".text_message input").val()){
                 alert($(".text_message input").val());
@@ -246,6 +235,16 @@ $signPackage = $jssdk->GetSignPackage();
                     alert("录音时间太段！");
                 }
             });
+        });
+        $(".wechat>div").on('click',function(){
+            var index = $(this).index();
+            alert("eee"+index);
+            var mychoosevoide=document.getElementById(index);
+            if(mychoosevoide.paused){
+                mychoosevoide.play();
+            }else{
+                mychoosevoide.pause();
+            }
         });
     });
   });
