@@ -236,7 +236,7 @@ $signPackage = $jssdk->GetSignPackage();
                 }
             });
         });
-        $(".container").on('click','.box',function(){
+        $(".wechat").on('click','.box',function(){
             var index = $(this).index();
             alert("eee"+index);
             var mychoosevoide=document.getElementById(index);
