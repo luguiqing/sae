@@ -44,6 +44,8 @@ $signPackage = $jssdk->GetSignPackage();
     .voice_message{position: fixed;bottom: 0px;left: 0px;height: 50px;border: 0px;width: 100%;display: none;}
     button{height: 50px;border:0px;display: inline-block;width: 15%}
     input{height: 50px;border: 0px;display: inline-block;width: 70%;}
+
+    .wechat>div:last-of-type{margin-bottom: 55px!important;}
 </style>
 <body>
     <div id="container">
