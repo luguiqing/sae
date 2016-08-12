@@ -32,8 +32,8 @@ $signPackage = $jssdk->GetSignPackage();
     }
     audio{opacity: 0;width: 10px;}
 
-    .wechat .right{float:right;width: 65%;position: relative;height: 50px;margin:5px;}
-    .wechat .left{float: left;width:65%;position: relative;height: 50px;margin: 5px;}
+    .wechat .right{float:right;width: 55%;position: relative;height: 50px;margin:5px;}
+    .wechat .left{float: left;width:55%;position: relative;height: 50px;margin: 5px;}
     .wechat img{display: inline-block;width: auto;height: 50px;width: 50px;border-radius: 50%}
 
     .wechat .right .right_child{position: absolute;right: 0px ;top:0px;height: 50px;}
@@ -88,7 +88,7 @@ $signPackage = $jssdk->GetSignPackage();
         componentDidMount:function(){
             /*this.interval = setInterval(this.getMsg,5000);*/
             this.getMsg();
-            $(".wechat>div").on('touchstart',function(){
+            $(".wechat>div").on('click',function(){
                 var index = $(this).index();
                 var mychoosevoide=document.getElementById(index);
                 if(mychoosevoide.paused){
