@@ -224,9 +224,11 @@ $signPackage = $jssdk->GetSignPackage();
             wx.startRecord();
         });
         $("#voicebtn").on("touchend",function(){
-            success: function (res) {
-                localId = res.localId;
-            }
+            wx.stopRecord({
+                success: function (res) {
+                    localId = res.localId;
+                }
+            });
         });
         $("#sendvoicebtn").on("click",function(){
             localId: localId
