@@ -236,7 +236,9 @@ $signPackage = $jssdk->GetSignPackage();
                         isShowProgressTips: 1,
                         success: function (res) {
                             var serverId = res.serverId;
-                            $("footer").before("<div class='right'><div class='right_child' alt='头像'><i class='iconfont' style='color:blue'>&#xe65d;</i><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div><audio controls='controls' id={index}><source src={voice} type='audio/mpeg'/></audio></div>");
+                            var index = $('.wechat>div:last').index()+1;
+                            alert(index);
+                            $("footer").before("<div class='right'><div class='right_child' alt='头像'><i class='iconfont' style='color:blue'>&#xe65d;</i><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div><audio controls='controls' id="+index+"><source src="+serverId+"type='audio/mpeg'/></audio></div>");
                        }
                     });
                 },
