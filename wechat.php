@@ -223,14 +223,6 @@ $signPackage = $jssdk->GetSignPackage();
         $("#voicebtn").on("touchstart",function(){
             wx.startRecord();
         });
-        $("#voicebtn").on("touchend",function(){
-            alert("2");
-            wx.stopRecord({
-                success: function (res) {
-                    localId = res.localId;
-                }
-            });
-        });
         $("#sendvoicebtn").on("click",function(){
             alert("播放");
             wx.stopRecord({
