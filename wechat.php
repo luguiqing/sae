@@ -117,7 +117,7 @@ $signPackage = $jssdk->GetSignPackage();
                 if(flags[index]==='1'){
                     if(voice==='0'){
                         return (<div className="right"  key={index}>
-                                    <div className="right_child" alt="头像">
+                                    <div className="right_child" alt="头像" id={index}>
                                         <span style={{width:'120px',height:'40px',display:'inline-block',textAlign:"right"}}>{_self.state.texts[index]}</span><img src="img/1.jpg" style={{marginLeft:"10px",marginBottom:"-12px"}}/>
                                     </div>
                                 </div>)
@@ -205,14 +205,15 @@ $signPackage = $jssdk->GetSignPackage();
         $("img").click(function(){
             alert('dd');
         });
-        $("#sendtxtbtn").on("click",function(){
+        /*$("#sendtxtbtn").on("click",function(){
             if($(".text_message input").val()){
                 alert($(".text_message input").val());
                 $("footer").before("<div class='right'><div class='right_child' alt='头像'><span style='width:120px;height:40px;display:inline-block;text-align:right'>"+$(".text_message input").val()+"</span><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div></div>");
+                $(".wechat ")
             }else{
                 alert("发送的信息不能为空！");
             }
-        })
+        });*/
 
     });
   });
