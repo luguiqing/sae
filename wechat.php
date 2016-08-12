@@ -88,16 +88,6 @@ $signPackage = $jssdk->GetSignPackage();
         componentDidMount:function(){
             /*this.interval = setInterval(this.getMsg,5000);*/
             this.getMsg();
-            $(".wechat>div").on('click',function(){
-                var index = $(this).index();
-                var mychoosevoide=document.getElementById(index);
-                alert(index+'e');
-                if(mychoosevoide.paused){
-                    mychoosevoide.play();
-                }else{
-                    mychoosevoide.pause();
-                }
-            });
         },
         componentWillUnmount:function(){
             /*clearInterval(this.getMsg);*/
@@ -216,7 +206,7 @@ $signPackage = $jssdk->GetSignPackage();
                     mychoosevoide.pause();
                 }
             });
-        /*$("#sendtxtbtn").on("click",function(){
+        $("#sendtxtbtn").on("click",function(){
             if($(".text_message input").val()){
                 alert($(".text_message input").val());
                 $("footer").before("<div class='right'><div class='right_child' alt='头像'><span style='width:120px;height:40px;display:inline-block;text-align:right'>"+$(".text_message input").val()+"</span><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div></div>");
@@ -224,7 +214,7 @@ $signPackage = $jssdk->GetSignPackage();
             }else{
                 alert("发送的信息不能为空！");
             }
-        });*/
+        });
 
     });
   });
