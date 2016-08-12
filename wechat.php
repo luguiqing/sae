@@ -32,6 +32,7 @@ $signPackage = $jssdk->GetSignPackage();
     }
     audio{opacity: 0;width: 10px;}
 
+
     .wechat .right{float:right;width: 65%;position: relative;height: 50px;margin:5px;}
     .wechat .left{float: left;width:55%;position: relative;height: 50px;margin: 5px;}
     .wechat img{display: inline-block;width: auto;height: 50px;width: 50px;border-radius: 50%}
@@ -75,7 +76,7 @@ $signPackage = $jssdk->GetSignPackage();
                         flag[i]=data[i].flag;
                     }
                     _self.setState({voiceArr:voiceUrl,flags:flag,texts:text,lengths:data.length});
-                    $('#'+(_self.state.lengths-1)).parent().css({marginBottom:'55px'});
+                    /*$('#'+(_self.state.lengths-1)).parent().css({marginBottom:'55px'});*/
                     console.log(_self.state.texts);        
                 },
                 error:function(xhr,status,err){
@@ -88,6 +89,7 @@ $signPackage = $jssdk->GetSignPackage();
         componentDidMount:function(){
             /*this.interval = setInterval(this.getMsg,5000);*/
             this.getMsg();
+            $(".wechat div:last").css("margin-bottom","55px");
         },
         componentWillUnmount:function(){
             /*clearInterval(this.getMsg);*/
@@ -196,6 +198,7 @@ $signPackage = $jssdk->GetSignPackage();
         $("img").click(function(){
             alert('dd');
         });
+        $(".wechat div:last").css("margin-bottom","55px");
         $(".wechat>div").on('click',function(){
                 var index = $(this).index();
                 alert("eee");
