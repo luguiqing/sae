@@ -110,14 +110,14 @@ $signPackage = $jssdk->GetSignPackage();
             return voiceArr.map(function(voice,index){
                 if(flags[index]==='1'){
                     if(voice==='0'){
-                        return (<div className="right"  key={index}>
+                        return (<div className="right box"  key={index}>
                                     <div className="right_child" alt="头像" id={index}>
                                         <span style={{width:'120px',height:'40px',display:'inline-block',textAlign:"right"}}>{_self.state.texts[index]}</span><img src="img/1.jpg" style={{marginLeft:"10px",marginBottom:"-12px"}}/>
                                     </div>
                                 </div>)
 
                     }else{
-                        return (<div className="right"  key={index}>
+                        return (<div className="right box"  key={index}>
                                     <div className="right_child" alt="头像">
                                         <i className="iconfont" style={{color:"blue"}}>&#xe65d;</i><img src="img/1.jpg" style={{marginLeft:"10px",marginBottom:"-10px"}}/>
                                     </div>
@@ -127,7 +127,7 @@ $signPackage = $jssdk->GetSignPackage();
                                 </div>)
                     }
                 }else{
-                    return  (<div className="left" key={index}>
+                    return  (<div className="left box" key={index}>
                                     <div className="left_child" alt="头像">
                                         <img src="img/1.jpg" style={{marginRight:"10px",marginBottom:"-10px"}}/><i className="iconfont" style={{color:"gray"}}>&#xe63d;</i>
                                     </div>
@@ -236,7 +236,7 @@ $signPackage = $jssdk->GetSignPackage();
                 }
             });
         });
-        $(".wechat>div").live('click',function(){
+        $(".wechat").on('click','.box',function(){
             var index = $(this).index();
             alert("eee"+index);
             var mychoosevoide=document.getElementById(index);
