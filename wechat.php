@@ -201,9 +201,6 @@ $signPackage = $jssdk->GetSignPackage();
         var localId;
         var serverId;
         var localvoice = [];
-        $("img").click(function(){
-            alert('dd');
-        });
         $("#sendtxtbtn").on("click",function(){
             if($(".text_message input").val()){
                 alert($(".text_message input").val());
@@ -232,6 +229,9 @@ $signPackage = $jssdk->GetSignPackage();
                         success: function (res) {
                             serverId = res.serverId;
                             $("footer").before("<div class='right box'><div class='right_child' alt='头像'><i class='iconfont' style='color:blue'>&#xe65d;</i><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div><audio controls='controls' id="+index+"><source type='audio/mpeg' src='nohaslocalvoice'/></audio></div>");
+                        },
+                        fail:function(){
+                            alert("上传失败！");
                         }
                     });
                 },
