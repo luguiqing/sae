@@ -215,12 +215,15 @@ $signPackage = $jssdk->GetSignPackage();
             }
         });
         $("#voicebtn").on("touchstart",function(){
+            alert("录音开始！");
             wx.startRecord();
         });
         $("#sendvoicebtn").on("click",function(){
             alert("播放");
             wx.stopRecord({
                 success: function (res) {
+                    var index = $('.wechat>div:last').index()+1;
+                    localvoice[index] = res.localId;
                     localId = res.localId;
                     alert(localId);
                     wx.uploadVoice({
@@ -228,23 +231,8 @@ $signPackage = $jssdk->GetSignPackage();
                         isShowProgressTips: 1,
                         success: function (res) {
                             serverId = res.serverId;
-                            wx.downloadVoice({
-                                serverId:serverId,
-                                isShowProgressTips: 1,
-                                success: function (res) {
-                                    var index = $('.wechat>div:last').index()+1; 
-                                    localvoice[index] = res.localId;
-                                    alert(localvoice[index]);
-                                    wx.playVoice({
-                                        localId: localvoice[index] 
-                                    });
-                                    $("footer").before("<div class='right box'><div class='right_child' alt='头像'><i class='iconfont' style='color:blue'>&#xe65d;</i><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div><audio controls='controls' id="+index+"><source type='audio/mpeg' src='nohaslocalvoice'/></audio></div>");
-                                },
-                                fail:function(){
-                                    alert("下载失败！");
-                                }
-                            });
-                       }
+                            $("footer").before("<div class='right box'><div class='right_child' alt='头像'><i class='iconfont' style='color:blue'>&#xe65d;</i><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div><audio controls='controls' id="+index+"><source type='audio/mpeg' src='nohaslocalvoice'/></audio></div>");
+                        }
                     });
                 },
                 fail:function(){
@@ -256,7 +244,6 @@ $signPackage = $jssdk->GetSignPackage();
             var index = $(this).index();
             alert("eee"+index);
             var mychoosevoide=document.getElementById(index);
-            /*alert($("#"+index+" source").attr("src"));*/
             if($("#"+index+" source").attr("src")==="nohaslocalvoice"){
                 alert("判断成功！");
                 wx.playVoice({

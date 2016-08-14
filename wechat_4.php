@@ -200,6 +200,7 @@ $signPackage = $jssdk->GetSignPackage();
     wx.ready(function () {
         var localId;
         var serverId;
+        var localvoice = [];
         $("img").click(function(){
             alert('dd');
         });
@@ -230,14 +231,14 @@ $signPackage = $jssdk->GetSignPackage();
                             wx.downloadVoice({
                                 serverId:serverId,
                                 isShowProgressTips: 1,
-                                success: function (res) { 
-                                    var localId1 = res.localId;
-                                    alert(localId1);
+                                success: function (res) {
+                                    var index = $('.wechat>div:last').index()+1; 
+                                    localvoice[index] = res.localId;
+                                    alert(localvoice[index]);
                                     wx.playVoice({
-                                        localId: localId1 
+                                        localId: localvoice[index] 
                                     });
-                                    var index = $('.wechat>div:last').index()+1;
-                                    $("footer").before("<div class='right box'><div class='right_child' alt='头像'><i class='iconfont' style='color:blue'>&#xe65d;</i><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div><audio controls='controls' id="+index+"><source type='audio/mpeg' src="+localId1+"/></audio></div>");
+                                    $("footer").before("<div class='right box'><div class='right_child' alt='头像'><i class='iconfont' style='color:blue'>&#xe65d;</i><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div><audio controls='controls' id="+index+"><source type='audio/mpeg' src='nohaslocalvoice'/></audio></div>");
                                 },
                                 fail:function(){
                                     alert("下载失败！");
@@ -255,10 +256,17 @@ $signPackage = $jssdk->GetSignPackage();
             var index = $(this).index();
             alert("eee"+index);
             var mychoosevoide=document.getElementById(index);
-            if(mychoosevoide.paused){
-                mychoosevoide.play();
+            if($("#"+index+" source").attr("src")==="nohaslocalvoice"){
+                alert("判断成功！");
+                wx.playVoice({
+                                localId: localvoice[index] 
+                            });
             }else{
-                mychoosevoide.pause();
+                if(mychoosevoide.paused){
+                    mychoosevoide.play();
+                }else{
+                    mychoosevoide.pause();
+                }
             }
         });
     });
