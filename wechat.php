@@ -255,6 +255,7 @@ $signPackage = $jssdk->GetSignPackage();
             var index = $(this).index();
             alert("eee"+index);
             var mychoosevoide=document.getElementById(index);
+            alert($("#"+index+" source").attr("src"));
             if(mychoosevoide.paused){
                 mychoosevoide.play();
             }else{
