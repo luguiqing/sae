@@ -255,7 +255,7 @@ $signPackage = $jssdk->GetSignPackage();
             });
         });
         $(".wechat").on('click','.left_box',function(){
-            $(this).children(".corl").css({backgroundPosition:"0px 0px"});
+            $(this).children(".left_i").css({backgroundPosition:"0px 0px"});
         });
         $(".wechat").on('click','.box',function(){
             var index = $(this).index();
