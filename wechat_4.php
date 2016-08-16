@@ -41,7 +41,7 @@ $signPackage = $jssdk->GetSignPackage();
     .wechat .left  .left_child{position: absolute;left: 0px;top:0px;height: 50px;}
 
     .text_message{position: fixed;bottom: 0px;left: 0px;height: 50px;border: 0px;width: 100%;}
-    .voice_message{position: fixed;bottom: 0px;left: 0px;height: 50px;border: 0px;width: 100%;display: none;margin-bottom: 0px!important;}
+    .voice_message{position: fixed;bottom: 0px;left: 0px;height: 50px;border: 0px;width: 100%;display: none;}
     button{height: 50px;border:0px;display: inline-block;width: 15%}
     input{height: 48px;border: 0px;display: inline-block;width: 70%;border-top: 1px solid #B1E6E6;}
 
@@ -110,14 +110,14 @@ $signPackage = $jssdk->GetSignPackage();
             return voiceArr.map(function(voice,index){
                 if(flags[index]==='1'){
                     if(voice==='0'){
-                        return (<div className="right"  key={index}>
+                        return (<div className="right box"  key={index}>
                                     <div className="right_child" alt="头像" id={index}>
                                         <span style={{width:'120px',height:'40px',display:'inline-block',textAlign:"right"}}>{_self.state.texts[index]}</span><img src="img/1.jpg" style={{marginLeft:"10px",marginBottom:"-12px"}}/>
                                     </div>
                                 </div>)
 
                     }else{
-                        return (<div className="right"  key={index}>
+                        return (<div className="right box"  key={index}>
                                     <div className="right_child" alt="头像">
                                         <i className="iconfont" style={{color:"blue"}}>&#xe65d;</i><img src="img/1.jpg" style={{marginLeft:"10px",marginBottom:"-10px"}}/>
                                     </div>
@@ -127,7 +127,7 @@ $signPackage = $jssdk->GetSignPackage();
                                 </div>)
                     }
                 }else{
-                    return  (<div className="left" key={index}>
+                    return  (<div className="left box" key={index}>
                                     <div className="left_child" alt="头像">
                                         <img src="img/1.jpg" style={{marginRight:"10px",marginBottom:"-10px"}}/><i className="iconfont" style={{color:"gray"}}>&#xe63d;</i>
                                     </div>
@@ -199,27 +199,19 @@ $signPackage = $jssdk->GetSignPackage();
     
     wx.ready(function () {
         var localId;
+        var serverId;
+        var localvoice = [];
         $("img").click(function(){
             alert('dd');
         });
-        $(".wechat div:last").css("margin-bottom","55px");
-        $(".wechat>div").on('click',function(){
-                var index = $(this).index();
-                alert("eee");
-                var mychoosevoide=document.getElementById(index);
-                if(mychoosevoide.paused){
-                    mychoosevoide.play();
-                }else{
-                    mychoosevoide.pause();
-                }
-            });
         $("#sendtxtbtn").on("click",function(){
             if($(".text_message input").val()){
                 alert($(".text_message input").val());
-                $("footer").before("<div class='right'><div class='right_child' alt='头像'><span style='width:120px;height:40px;display:inline-block;text-align:right'>"+$(".text_message input").val()+"</span><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div></div>");
+                $("footer").before("<div class='right box'><div class='right_child' alt='头像'><span style='width:120px;height:40px;display:inline-block;text-align:right'>"+$(".text_message input").val()+"</span><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div></div>");
                 $(".text_message input").val('');
             }else{
                 alert("发送的信息不能为空！");
+                alert($('.wechat>div:last').index());
             }
         });
         $("#voicebtn").on("touchstart",function(){
@@ -230,16 +222,52 @@ $signPackage = $jssdk->GetSignPackage();
             wx.stopRecord({
                 success: function (res) {
                     localId = res.localId;
+                    alert(localId);
                     wx.uploadVoice({
                         localId: localId,
                         isShowProgressTips: 1,
                         success: function (res) {
-                            var serverId = res.serverId;
-                            $("footer").before("<div class='right'><div class='right_child' alt='头像'><i class='iconfont' style='color:blue'>&#xe65d;</i><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div><audio controls='controls' id={index}><source src={voice} type='audio/mpeg'/></audio></div>");
+                            serverId = res.serverId;
+                            wx.downloadVoice({
+                                serverId:serverId,
+                                isShowProgressTips: 1,
+                                success: function (res) {
+                                    var index = $('.wechat>div:last').index()+1; 
+                                    localvoice[index] = res.localId;
+                                    alert(localvoice[index]);
+                                    wx.playVoice({
+                                        localId: localvoice[index] 
+                                    });
+                                    $("footer").before("<div class='right box'><div class='right_child' alt='头像'><i class='iconfont' style='color:blue'>&#xe65d;</i><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div><audio controls='controls' id="+index+"><source type='audio/mpeg' src='nohaslocalvoice'/></audio></div>");
+                                },
+                                fail:function(){
+                                    alert("下载失败！");
+                                }
+                            });
                        }
                     });
+                },
+                fail:function(){
+                    alert("录音时间太段！");
                 }
             });
+        });
+        $(".wechat").on('click','.box',function(){
+            var index = $(this).index();
+            alert("eee"+index);
+            var mychoosevoide=document.getElementById(index);
+            if($("#"+index+" source").attr("src")==="nohaslocalvoice"){
+                alert("判断成功！");
+                wx.playVoice({
+                                localId: localvoice[index] 
+                            });
+            }else{
+                if(mychoosevoide.paused){
+                    mychoosevoide.play();
+                }else{
+                    mychoosevoide.pause();
+                }
+            }
         });
     });
   });
