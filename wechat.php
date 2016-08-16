@@ -258,13 +258,15 @@ $signPackage = $jssdk->GetSignPackage();
             var _self = this
             $(this).children(".left_i").css({backgroundPosition:"0px 0px"});
             var timeout = setTimeout(function(){
-                alert("why");
                 $(_self).children(".left_i").css({backgroundPosition:"0px 38px"});
             },6000)
-
-            /*$(this).children(".corl").animate({backgroundPosition:"0px 0px"},3000,function(){
-                $(this).children(".corl").animate({backgroundPosition:"0px 38px"});
-            });*/
+        });
+        $(".wechat").on('click','.right_box',function(){
+            var _self = this
+            $(this).children(".right_i").css({backgroundPosition:"0px 0px"});
+            var timeout = setTimeout(function(){
+                $(_self).children(".right_i").css({backgroundPosition:"0px 38px"});
+            },6000)
         });
         $(".wechat").on('click','.box',function(){
             var index = $(this).index();
