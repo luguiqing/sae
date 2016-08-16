@@ -48,7 +48,7 @@ $signPackage = $jssdk->GetSignPackage();
     .wechat>div:last-of-type{margin-bottom: 65px!important;}
 
 
-    .right_box{width:60%; height:50px; line-height:25px;background:#36C547;font-size:12px; position:relative; display: inline-block;} 
+    .right_box{width:60%; height:50px; line-height:25px;background:#36C547;font-size:12px; position:relative; display: inline-block;font-size: 15px!important} 
     .left_box{width:60%; height:50px; line-height:25px;background:#EAE4D7;font-size:12px; position:relative; display: inline-block;}
     .org_box_cor{ width:0; height:0; font-size:0;border-style:solid;overflow:hidden; position:absolute; }
     .corr{border-width:10px;border-color:transparent transparent transparent #36C547;right:-20px; bottom:15px;}
@@ -134,7 +134,7 @@ $signPackage = $jssdk->GetSignPackage();
                     }else{
                         return (<div className="right box"  key={index}>
                                     <div className="right_child" alt="头像">
-                                        <div className="right_box"><span className="org_box_cor corr"></span><i className="right_i"></i></div><img src="img/1.jpg" style={{marginLeft:"10px",marginBottom:"-10px"}}/>
+                                        <div className="right_box change_position"><span className="org_box_cor corr"></span><i className="right_i"></i></div><img src="img/1.jpg" style={{marginLeft:"10px",marginBottom:"-10px"}}/>
                                     </div>
                                     <audio controls="controls" ref={index} id={index}>
                                         <source src={voice} type="audio/mpeg" />
@@ -144,7 +144,7 @@ $signPackage = $jssdk->GetSignPackage();
                 }else{
                     return  (<div className="left box" key={index}>
                                     <div className="left_child" alt="头像">
-                                        <img src="img/1.jpg" style={{marginRight:"10px",marginBottom:"-10px"}}/><div className="left_box"><span className="org_box_cor corl"></span><i className="left_i"></i></div>
+                                        <img src="img/1.jpg" style={{marginRight:"10px",marginBottom:"-10px"}}/><div className="left_box change_position"><span className="org_box_cor corl"></span><i className="left_i"></i></div>
                                     </div>
                                     <audio controls="controls" ref={index} id={index}>
                                         <source src={voice} type="audio/mpeg" />
@@ -242,7 +242,7 @@ $signPackage = $jssdk->GetSignPackage();
                         isShowProgressTips: 1,
                         success: function (res) {
                             serverId = res.serverId;
-                            $("footer").before("<div class='right box'><div class='right_child' alt='头像'><div class='right_box'><span class='org_box_cor corr'></span><i class='right_i'></i></div><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div><audio controls='controls' id="+index+"><source type='audio/mpeg' src='nohaslocalvoice'/></audio></div>");
+                            $("footer").before("<div class='right box'><div class='right_child' alt='头像'><div class='right_box change_position'><span class='org_box_cor corr'></span><i class='right_i'></i></div><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div><audio controls='controls' id="+index+"><source type='audio/mpeg' src='nohaslocalvoice'/></audio></div>");
                         },
                         fail:function(){
                             alert("上传失败！");
@@ -254,9 +254,23 @@ $signPackage = $jssdk->GetSignPackage();
                 }
             });
         });
+        $(".wechat").on('click','.left_box',function(){
+            var _self = this
+            $(this).children(".left_i").css({backgroundPosition:"0px 0px"});
+            var timeout = setTimeout(function(){
+                $(_self).children(".left_i").css({backgroundPosition:"0px 38px"});
+            },6000)
+        });
+        $(".wechat").on('click','.right_box',function(){
+            var _self = this
+            $(this).children(".right_i").css({backgroundPosition:"35px 0px"});
+            var timeout = setTimeout(function(){
+                $(_self).children(".right_i").css({backgroundPosition:"35px 38px"});
+            },6000)
+        });
         $(".wechat").on('click','.box',function(){
             var index = $(this).index();
-            alert("eee"+index);
+            alert(index);
             var mychoosevoide=document.getElementById(index);
             if($("#"+index+" source").attr("src")==="nohaslocalvoice"){
                 alert("判断成功！");

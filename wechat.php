@@ -17,15 +17,15 @@ $signPackage = $jssdk->GetSignPackage();
 <style>
     *{margin: 0px;padding: 0px}
     @font-face {font-family: 'iconfont';
-      src: url('iconfont_1/iconfont.eot'); /* IE9*/
-      src: url('iconfont_1/iconfont.eot?#iefix') format('embedded-opentype'), 
-      url('iconfont_1/iconfont.woff') format('woff'), 
-      url('iconfont_1/iconfont.ttf') format('truetype'),
-      url('iconfont_1/iconfont.svg#iconfont') format('svg'); 
+      src: url('iconfont/iconfont.eot'); /* IE9*/
+      src: url('iconfont/iconfont.eot?#iefix') format('embedded-opentype'), 
+      url('iconfont/iconfont.woff') format('woff'), 
+      url('iconfont/iconfont.ttf') format('truetype'),
+      url('iconfont/iconfont.svg#iconfont') format('svg'); 
     }
     .iconfont{
       font-family:"iconfont" !important;
-      font-size:40px;font-style:normal;
+      font-size:16px;font-style:normal;
       -webkit-font-smoothing: antialiased;
       -webkit-text-stroke-width: 0.2px;
       -moz-osx-font-smoothing: grayscale;
@@ -53,7 +53,7 @@ $signPackage = $jssdk->GetSignPackage();
     .org_box_cor{ width:0; height:0; font-size:0;border-style:solid;overflow:hidden; position:absolute; }
     .corr{border-width:10px;border-color:transparent transparent transparent #36C547;right:-20px; bottom:15px;}
     .corl{border-width:10px;border-color:transparent #EAE4D7 transparent transparent;left:-20px; bottom:15px;}
-    i{background-image: url("img/voice-ani@2x.gif");
+    .change_position i{background-image: url("img/voice-ani@2x.gif");
         width: 30px;
         height: 30px;
         display: inline-block;
@@ -165,14 +165,14 @@ $signPackage = $jssdk->GetSignPackage();
                     <footer style={{border:'0px'}}>
                         <div className="text_message">
                             <form>
-                                <button onClick={_self.textToggleChange} type="button">文本</button>
-                                <input onChange={this.onChange}/>
+                                <button onClick={_self.textToggleChange} type="button" style={{backgroundColor:'#C0E07C'}}><i className="iconfont">&#xe606;</i></button>
+                                <input placeholder="限定发送15个字以内"/>
                                 <button type="button" id="sendtxtbtn" style={{color:'#fff',backgroundColor:'green'}}>发送</button>
                             </form>
                         </div>
                         <div className="voice_message">
                             <form>
-                                <button onClick={_self.voiceToggleChange} type="button">切换</button>
+                                <button onClick={_self.voiceToggleChange} type="button" style={{color:'#5052A2',backgroundColor:'#C0E07C'}}>切换</button>
                                 <button style={{width:"70%"}} type="button" id="voicebtn">点击录音</button>
                                 <button type="button" id="sendvoicebtn" style={{color:'#fff',backgroundColor:'green'}}>发送</button>
                             </form>

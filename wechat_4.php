@@ -151,7 +151,7 @@ $signPackage = $jssdk->GetSignPackage();
                         <div className="text_message">
                             <form>
                                 <button onClick={_self.textToggleChange} type="button">文本</button>
-                                <input onChange={this.onChange}/>
+                                <input onChange={this.onChange} placeholder="限定发送15个字以内"/>
                                 <button type="button" id="sendtxtbtn" style={{color:'#fff',backgroundColor:'green'}}>发送</button>
                             </form>
                         </div>
@@ -201,12 +201,8 @@ $signPackage = $jssdk->GetSignPackage();
         var localId;
         var serverId;
         var localvoice = [];
-        $("img").click(function(){
-            alert('dd');
-        });
         $("#sendtxtbtn").on("click",function(){
             if($(".text_message input").val()){
-                alert($(".text_message input").val());
                 $("footer").before("<div class='right box'><div class='right_child' alt='头像'><span style='width:120px;height:40px;display:inline-block;text-align:right'>"+$(".text_message input").val()+"</span><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div></div>");
                 $(".text_message input").val('');
             }else{
@@ -221,6 +217,8 @@ $signPackage = $jssdk->GetSignPackage();
             alert("播放");
             wx.stopRecord({
                 success: function (res) {
+                    var index = $('.wechat>div:last').index()+1;
+                    localvoice[index] = res.localId;
                     localId = res.localId;
                     alert(localId);
                     wx.uploadVoice({
@@ -228,23 +226,11 @@ $signPackage = $jssdk->GetSignPackage();
                         isShowProgressTips: 1,
                         success: function (res) {
                             serverId = res.serverId;
-                            wx.downloadVoice({
-                                serverId:serverId,
-                                isShowProgressTips: 1,
-                                success: function (res) {
-                                    var index = $('.wechat>div:last').index()+1; 
-                                    localvoice[index] = res.localId;
-                                    alert(localvoice[index]);
-                                    wx.playVoice({
-                                        localId: localvoice[index] 
-                                    });
-                                    $("footer").before("<div class='right box'><div class='right_child' alt='头像'><i class='iconfont' style='color:blue'>&#xe65d;</i><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div><audio controls='controls' id="+index+"><source type='audio/mpeg' src='nohaslocalvoice'/></audio></div>");
-                                },
-                                fail:function(){
-                                    alert("下载失败！");
-                                }
-                            });
-                       }
+                            $("footer").before("<div class='right box'><div class='right_child' alt='头像'><i class='iconfont' style='color:blue'>&#xe65d;</i><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div><audio controls='controls' id="+index+"><source type='audio/mpeg' src='nohaslocalvoice'/></audio></div>");
+                        },
+                        fail:function(){
+                            alert("上传失败！");
+                        }
                     });
                 },
                 fail:function(){
