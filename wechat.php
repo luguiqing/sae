@@ -35,9 +35,9 @@ $signPackage = $jssdk->GetSignPackage();
 
     .wechat .right{float:right;width: 65%;position: relative;height: 50px;margin:5px;}
     .wechat .left{float: left;width:55%;position: relative;height: 50px;margin: 5px;}
-    .wechat img{display: inline-block;width: auto;height: 50px;width: 50px;border-radius: 50%}
+    .wechat img{display: inline-block;height: auto;width: 30%;border-radius: 18%}
 
-    .wechat .right .right_child{position: absolute;right: 0px ;top:0px;height: 50px;}
+    .wechat .right .right_child{position: absolute;right: 0px ;top:0px;height: 50px;width: 90%}
     .wechat .left  .left_child{position: absolute;left: 0px;top:0px;height: 50px;}
 
     .text_message{position: fixed;bottom: 0px;left: 0px;height: 50px;border: 0px;width: 100%;}
@@ -46,6 +46,21 @@ $signPackage = $jssdk->GetSignPackage();
     input{height: 48px;border: 0px;display: inline-block;width: 70%;border-top: 1px solid #B1E6E6;}
 
     .wechat>div:last-of-type{margin-bottom: 55px!important;}
+
+
+    .right_box{width:60%; height:50px; line-height:25px;background:#36C547;font-size:12px; position:relative; display: inline-block;} 
+    .left_box{width:60%; height:50px; line-height:25px;background:#EAE4D7;font-size:12px; position:relative; display: inline-block;}
+    .org_box_cor{ width:0; height:0; font-size:0;border-style:solid;overflow:hidden; position:absolute; }
+    .corr{border-width:10px;border-color:transparent transparent transparent #36C547;right:-20px; bottom:15px;}
+    .corl{border-width:10px;border-color:transparent #EAE4D7 transparent transparent;left:-20px; bottom:15px;}
+    i{background-image: url("img/voice-ani@2x.gif");
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+        margin-top: 10px;
+    }
+    .left_i{background-position: 0px 38px;}
+    .right_i{background-position: 35px 38px;margin-left: 70%;}
 </style>
 <body>
     <div id="container">
@@ -112,14 +127,14 @@ $signPackage = $jssdk->GetSignPackage();
                     if(voice==='0'){
                         return (<div className="right box"  key={index}>
                                     <div className="right_child" alt="头像" id={index}>
-                                        <span style={{width:'120px',height:'40px',display:'inline-block',textAlign:"right"}}>{_self.state.texts[index]}</span><img src="img/1.jpg" style={{marginLeft:"10px",marginBottom:"-12px"}}/>
+                                        <div className="right_box"><span className="org_box_cor corr"></span>{_self.state.texts[index]}</div><img src="img/1.jpg" style={{marginLeft:"10px",marginBottom:"-12px"}}/>
                                     </div>
                                 </div>)
 
                     }else{
                         return (<div className="right box"  key={index}>
                                     <div className="right_child" alt="头像">
-                                        <i className="iconfont" style={{color:"blue"}}>&#xe65d;</i><img src="img/1.jpg" style={{marginLeft:"10px",marginBottom:"-10px"}}/>
+                                        <div className="right_box"><span className="org_box_cor corr"></span><i className="right_i"></i></div><img src="img/1.jpg" style={{marginLeft:"10px",marginBottom:"-10px"}}/>
                                     </div>
                                     <audio controls="controls" ref={index} id={index}>
                                         <source src={voice} type="audio/mpeg" />
@@ -129,7 +144,7 @@ $signPackage = $jssdk->GetSignPackage();
                 }else{
                     return  (<div className="left box" key={index}>
                                     <div className="left_child" alt="头像">
-                                        <img src="img/1.jpg" style={{marginRight:"10px",marginBottom:"-10px"}}/><i className="iconfont" style={{color:"gray"}}>&#xe63d;</i>
+                                        <img src="img/1.jpg" style={{marginRight:"10px",marginBottom:"-10px"}}/><div className="left_box"><span className="org_box_cor corl"></span><i className="left_i"></i></div>
                                     </div>
                                     <audio controls="controls" ref={index} id={index}>
                                         <source src={voice} type="audio/mpeg" />
@@ -199,13 +214,12 @@ $signPackage = $jssdk->GetSignPackage();
     
     wx.ready(function () {
         var localId;
-        $("img").click(function(){
-            alert('dd');
-        });
+        var serverId;
+        var localvoice = [];
         $("#sendtxtbtn").on("click",function(){
             if($(".text_message input").val()){
                 alert($(".text_message input").val());
-                $("footer").before("<div class='right'><div class='right_child' alt='头像'><span style='width:120px;height:40px;display:inline-block;text-align:right'>"+$(".text_message input").val()+"</span><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div></div>");
+                $("footer").before("<div class='right box'><div class='right_child' alt='头像'><div class='right_box'><span className='org_box_cor corr'></span>"+$(".text_message input").val()+"</div><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div></div>");
                 $(".text_message input").val('');
             }else{
                 alert("发送的信息不能为空！");
@@ -216,19 +230,22 @@ $signPackage = $jssdk->GetSignPackage();
             wx.startRecord();
         });
         $("#sendvoicebtn").on("click",function(){
-            alert("播放");
             wx.stopRecord({
                 success: function (res) {
+                    var index = $('.wechat>div:last').index()+1;
+                    localvoice[index] = res.localId;
                     localId = res.localId;
+                    alert(localId);
                     wx.uploadVoice({
                         localId: localId,
                         isShowProgressTips: 1,
                         success: function (res) {
-                            var serverId = res.serverId;
-                            var index = $('.wechat>div:last').index()+1;
-                            alert(index);
-                            $("footer").before("<div class='right'><div class='right_child' alt='头像'><i class='iconfont' style='color:blue'>&#xe65d;</i><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div><audio controls='controls' id="+index+"><source src="+serverId+"type='audio/mpeg'/></audio></div>");
-                       }
+                            serverId = res.serverId;
+                            $("footer").before("<div class='right box'><div class='right_child' alt='头像'><div class='right_box'><span class='org_box_cor corr'></span><i className='right_i'></i></div><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div><audio controls='controls' id="+index+"><source type='audio/mpeg' src='nohaslocalvoice'/></audio></div>");
+                        },
+                        fail:function(){
+                            alert("上传失败！");
+                        }
                     });
                 },
                 fail:function(){
@@ -240,10 +257,17 @@ $signPackage = $jssdk->GetSignPackage();
             var index = $(this).index();
             alert("eee"+index);
             var mychoosevoide=document.getElementById(index);
-            if(mychoosevoide.paused){
-                mychoosevoide.play();
+            if($("#"+index+" source").attr("src")==="nohaslocalvoice"){
+                alert("判断成功！");
+                wx.playVoice({
+                                localId: localvoice[index] 
+                            });
             }else{
-                mychoosevoide.pause();
+                if(mychoosevoide.paused){
+                    mychoosevoide.play();
+                }else{
+                    mychoosevoide.pause();
+                }
             }
         });
     });
