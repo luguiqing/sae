@@ -263,9 +263,9 @@ $signPackage = $jssdk->GetSignPackage();
         });
         $(".wechat").on('click','.right_box',function(){
             var _self = this
-            $(this).children(".right_i").css({backgroundPosition:"0px 0px"});
+            $(this).children(".right_i").css({backgroundPosition:"35px 0px"});
             var timeout = setTimeout(function(){
-                $(_self).children(".right_i").css({backgroundPosition:"0px 38px"});
+                $(_self).children(".right_i").css({backgroundPosition:"35px 38px"});
             },6000)
         });
         $(".wechat").on('click','.box',function(){
