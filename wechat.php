@@ -219,11 +219,7 @@ $signPackage = $jssdk->GetSignPackage();
         $("#sendtxtbtn").on("click",function(){
             if($(".text_message input").val()){
                 alert($(".text_message input").val());
-<<<<<<< HEAD
                 $("footer").before("<div class='right box'><div class='right_child' alt='头像'><div class='right_box'><span className='org_box_cor corr'></span>"+$(".text_message input").val()+"</div><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div></div>");
-=======
-                $("footer").before("<div class='right box'><div class='right_child' alt='头像'><span style='width:120px;height:40px;display:inline-block;text-align:right'>"+$(".text_message input").val()+"</span><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div></div>");
->>>>>>> 13cb5c5929d59bbb43c65b67c3bffb8d89acdc5c
                 $(".text_message input").val('');
             }else{
                 alert("发送的信息不能为空！");
@@ -246,11 +242,7 @@ $signPackage = $jssdk->GetSignPackage();
                         isShowProgressTips: 1,
                         success: function (res) {
                             serverId = res.serverId;
-<<<<<<< HEAD
                             $("footer").before("<div class='right box'><div class='right_child' alt='头像'><div class='right_box'><span class='org_box_cor corr'></span><i className='right_i'></i></div><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div><audio controls='controls' id="+index+"><source type='audio/mpeg' src='nohaslocalvoice'/></audio></div>");
-=======
-                            $("footer").before("<div class='right box'><div class='right_child' alt='头像'><i class='iconfont' style='color:blue'>&#xe65d;</i><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div><audio controls='controls' id="+index+"><source type='audio/mpeg' src='nohaslocalvoice'/></audio></div>");
->>>>>>> 13cb5c5929d59bbb43c65b67c3bffb8d89acdc5c
                         },
                         fail:function(){
                             alert("上传失败！");
