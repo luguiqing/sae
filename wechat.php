@@ -255,10 +255,11 @@ $signPackage = $jssdk->GetSignPackage();
             });
         });
         $(".wechat").on('click','.left_box',function(){
+            var _self = this
             $(this).children(".left_i").css({backgroundPosition:"0px 0px"});
             var timeout = setTimeout(function(){
                 alert("why");
-                $(this).children(".left_i").css({backgroundPosition:"0px 38px"});
+                $(_self).children(".left_i").css({backgroundPosition:"0px 38px"});
             },6000)
 
             /*$(this).children(".corl").animate({backgroundPosition:"0px 0px"},3000,function(){
