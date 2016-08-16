@@ -256,7 +256,8 @@ $signPackage = $jssdk->GetSignPackage();
         });
         $(".wechat").on('click','.left_box',function(){
             $(this).children(".left_i").css({backgroundPosition:"0px 0px"});
-            setTimeout(function(){
+            var timeout = setTimeout(function(){
+                alert("why");
                 $(this).children(".left_i").css({backgroundPosition:"0px 38px"});
             },6000)
 
