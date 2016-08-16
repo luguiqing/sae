@@ -219,7 +219,7 @@ $signPackage = $jssdk->GetSignPackage();
         $("#sendtxtbtn").on("click",function(){
             if($(".text_message input").val()){
                 alert($(".text_message input").val());
-                $("footer").before("<div class='right box'><div class='right_child' alt='头像'><div class='right_box'><span className='org_box_cor corr'></span>"+$(".text_message input").val()+"</div><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div></div>");
+                $("footer").before("<div class='right box'><div class='right_child' alt='头像'><div class='right_box'><span class='org_box_cor corr'></span>"+$(".text_message input").val()+"</div><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div></div>");
                 $(".text_message input").val('');
             }else{
                 alert("发送的信息不能为空！");
@@ -242,7 +242,7 @@ $signPackage = $jssdk->GetSignPackage();
                         isShowProgressTips: 1,
                         success: function (res) {
                             serverId = res.serverId;
-                            $("footer").before("<div class='right box'><div class='right_child' alt='头像'><div class='right_box'><span class='org_box_cor corr'></span><i className='right_i'></i></div><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div><audio controls='controls' id="+index+"><source type='audio/mpeg' src='nohaslocalvoice'/></audio></div>");
+                            $("footer").before("<div class='right box'><div class='right_child' alt='头像'><div class='right_box'><span class='org_box_cor corr'></span><i class='right_i'></i></div><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div><audio controls='controls' id="+index+"><source type='audio/mpeg' src='nohaslocalvoice'/></audio></div>");
                         },
                         fail:function(){
                             alert("上传失败！");
