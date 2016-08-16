@@ -45,7 +45,7 @@ $signPackage = $jssdk->GetSignPackage();
     button{height: 50px;border:0px;display: inline-block;width: 15%}
     input{height: 48px;border: 0px;display: inline-block;width: 70%;border-top: 1px solid #B1E6E6;}
 
-    .wechat>div:last-of-type{margin-bottom: 65px!important;}
+    .wechat>div:last-of-type{margin-bottom: 110px!important;}
 
 
     .right_box{width:60%; height:50px; line-height:25px;background:#36C547;font-size:12px; position:relative; display: inline-block;font-size: 15px!important} 
