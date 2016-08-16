@@ -218,9 +218,13 @@ $signPackage = $jssdk->GetSignPackage();
         var localvoice = [];
         $("#sendtxtbtn").on("click",function(){
             if($(".text_message input").val()){
-                alert($(".text_message input").val());
-                $("footer").before("<div class='right box'><div class='right_child' alt='头像'><div class='right_box'><span class='org_box_cor corr'></span>"+$(".text_message input").val()+"</div><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div></div>");
-                $(".text_message input").val('');
+                if($(".text_message input").val().length<=15){
+                    $("footer").before("<div class='right box'><div class='right_child' alt='头像'><div class='right_box'><span class='org_box_cor corr'></span>"+$(".text_message input").val()+"</div><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div></div>");
+                    $(".text_message input").val('');
+                }else{
+                    alert("字数超过限制！");
+                    $(".text_message input").val('');
+                }
             }else{
                 alert("发送的信息不能为空！");
                 alert($('.wechat>div:last').index());
