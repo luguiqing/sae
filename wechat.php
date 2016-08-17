@@ -71,7 +71,7 @@ $signPackage = $jssdk->GetSignPackage();
 <script type="text/babel">
     var WeChat = React.createClass({
         getInitialState:function(){
-            return {voiceArr:[],flags:[],texts:[],lengths:0,data:[]}
+            return {lengths:0,data:[]}
         },
         getMsg:function(){
             var _self = this;
@@ -80,19 +80,7 @@ $signPackage = $jssdk->GetSignPackage();
                 url:"wechat_houtai.php",
                 dataType:"json",
                 success:function(data){
-                    var voiceUrl =[];
-                    var flag=[];
-                    var text=[];
-                    for(var i=0;i<data.length;i++){
-                        if(data[i].flag==="1"){
-                            if(data[i].voiceUrl==="0"){
-                                text[i]=data[i].stringText;
-                            }
-                        }
-                        voiceUrl[i]=data[i].voiceUrl;
-                        flag[i]=data[i].flag;
-                    }
-                    _self.setState({voiceArr:voiceUrl,flags:flag,texts:text,lengths:data.length,data:data});
+                    _self.setState({lengths:data.length,data:data});
                     console.log(_self.state.data);        
                 },
                 error:function(xhr,status,err){
@@ -118,15 +106,14 @@ $signPackage = $jssdk->GetSignPackage();
             $(".text_message").css({display:'block'});
         },
         handleMsg:function(){
-            var voiceArr = this.state.voiceArr;
-            var flags = this.state.flags;
+            var data = this.state.data;
             var _self=this;
-            return voiceArr.map(function(voice,index){
-                if(flags[index]==='1'){
-                    if(voice==='0'){
+            return data.map(function(data,index){
+                if(data[flag]==='1'){
+                    if(data[voiceUrl]==='0'){
                         return (<div className="right box"  key={index}>
                                     <div className="right_child" alt="头像" id={index}>
-                                        <div className="right_box"><span className="org_box_cor corr"></span>{_self.state.texts[index]}</div><img src="img/1.jpg" style={{marginLeft:"10px",marginBottom:"-12px"}}/>
+                                        <div className="right_box"><span className="org_box_cor corr"></span>{data[stringText]}</div><img src="img/1.jpg" style={{marginLeft:"10px",marginBottom:"-12px"}}/>
                                     </div>
                                 </div>)
 
@@ -136,7 +123,7 @@ $signPackage = $jssdk->GetSignPackage();
                                         <div className="right_box change_position"><span className="org_box_cor corr"></span><i className="right_i"></i></div><img src="img/1.jpg" style={{marginLeft:"10px",marginBottom:"-10px"}}/>
                                     </div>
                                     <audio controls="controls" ref={index} id={index}>
-                                        <source src={voice} type="audio/mpeg" />
+                                        <source src={data[voiceUrl]} type="audio/mpeg" />
                                     </audio>
                                 </div>)
                     }
@@ -146,7 +133,7 @@ $signPackage = $jssdk->GetSignPackage();
                                         <img src="img/1.jpg" style={{marginRight:"10px",marginBottom:"-10px"}}/><div className="left_box change_position"><span className="org_box_cor corl"></span><i className="left_i"></i></div>
                                     </div>
                                     <audio controls="controls" ref={index} id={index}>
-                                        <source src={voice} type="audio/mpeg" />
+                                        <source src={data[voiceUrl]} type="audio/mpeg" />
                                     </audio>
                             </div>)
                 }

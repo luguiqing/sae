@@ -71,7 +71,7 @@ $signPackage = $jssdk->GetSignPackage();
 <script type="text/babel">
     var WeChat = React.createClass({
         getInitialState:function(){
-            return {voiceArr:[],flags:[],texts:[],lengths:0}
+            return {voiceArr:[],flags:[],texts:[],lengths:0,data:[]}
         },
         getMsg:function(){
             var _self = this;
@@ -92,9 +92,8 @@ $signPackage = $jssdk->GetSignPackage();
                         voiceUrl[i]=data[i].voiceUrl;
                         flag[i]=data[i].flag;
                     }
-                    _self.setState({voiceArr:voiceUrl,flags:flag,texts:text,lengths:data.length});
-                    /*$('#'+(_self.state.lengths-1)).parent().css({marginBottom:'55px'});*/
-                    console.log(_self.state.texts);        
+                    _self.setState({voiceArr:voiceUrl,flags:flag,texts:text,lengths:data.length,data:data});
+                    console.log(_self.state.data);        
                 },
                 error:function(xhr,status,err){
                     console.log(err);
@@ -182,7 +181,6 @@ $signPackage = $jssdk->GetSignPackage();
            ) 
         }
     });
-   /* React.initializeTouchEvents(true);*///初始化接触事件
     ReactDOM.render(<WeChat/>,document.getElementById("container"));
 </script>
 <script>
