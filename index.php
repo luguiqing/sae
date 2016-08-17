@@ -135,7 +135,7 @@ $signPackage = $jssdk->GetSignPackage();
 						</div>
 						<div className="footer">
 							<ul>
-								<li><a href="#" style={{backgroundColor:"#34AAB7"}}><i className="iconfont">&#xe6ba;</i><p>关于我</p></a></li>
+								<li><a href="https://luguiqing.applinzi.com/we_logout.html" style={{backgroundColor:"#34AAB7"}}><i className="iconfont">&#xe6ba;</i><p>关于我</p></a></li>
 								<li><a href="#" style={{backgroundColor:"#54CC76"}}><i className="iconfont">&#xe666;</i><p>主页</p></a></li>
 							</ul>
 						</div>
