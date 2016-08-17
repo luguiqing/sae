@@ -109,11 +109,11 @@ $signPackage = $jssdk->GetSignPackage();
             var data = this.state.data;
             var _self=this;
             return data.map(function(data,index){
-                if(data[flag]==='1'){
-                    if(data[voiceUrl]==='0'){
+                if(data['flag']==='1'){
+                    if(data['voiceUrl']==='0'){
                         return (<div className="right box"  key={index}>
                                     <div className="right_child" alt="头像" id={index}>
-                                        <div className="right_box"><span className="org_box_cor corr"></span>{data[stringText]}</div><img src="img/1.jpg" style={{marginLeft:"10px",marginBottom:"-12px"}}/>
+                                        <div className="right_box"><span className="org_box_cor corr"></span>{data['stringText']}</div><img src="img/1.jpg" style={{marginLeft:"10px",marginBottom:"-12px"}}/>
                                     </div>
                                 </div>)
 
@@ -123,7 +123,7 @@ $signPackage = $jssdk->GetSignPackage();
                                         <div className="right_box change_position"><span className="org_box_cor corr"></span><i className="right_i"></i></div><img src="img/1.jpg" style={{marginLeft:"10px",marginBottom:"-10px"}}/>
                                     </div>
                                     <audio controls="controls" ref={index} id={index}>
-                                        <source src={data[voiceUrl]} type="audio/mpeg" />
+                                        <source src={data['voiceUrl']} type="audio/mpeg" />
                                     </audio>
                                 </div>)
                     }
@@ -133,7 +133,7 @@ $signPackage = $jssdk->GetSignPackage();
                                         <img src="img/1.jpg" style={{marginRight:"10px",marginBottom:"-10px"}}/><div className="left_box change_position"><span className="org_box_cor corl"></span><i className="left_i"></i></div>
                                     </div>
                                     <audio controls="controls" ref={index} id={index}>
-                                        <source src={data[voiceUrl]} type="audio/mpeg" />
+                                        <source src={data['voiceUrl']} type="audio/mpeg" />
                                     </audio>
                             </div>)
                 }
