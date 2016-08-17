@@ -25,7 +25,7 @@ $signPackage = $jssdk->GetSignPackage();
     }
     .iconfont{
       font-family:"iconfont" !important;
-      font-size:16px;font-style:normal;
+      font-size:18px;font-style:normal;
       -webkit-font-smoothing: antialiased;
       -webkit-text-stroke-width: 0.2px;
       -moz-osx-font-smoothing: grayscale;
@@ -71,7 +71,7 @@ $signPackage = $jssdk->GetSignPackage();
 <script type="text/babel">
     var WeChat = React.createClass({
         getInitialState:function(){
-            return {voiceArr:[],flags:[],texts:[],lengths:0}
+            return {voiceArr:[],flags:[],texts:[],lengths:0,data:[]}
         },
         getMsg:function(){
             var _self = this;
@@ -92,9 +92,8 @@ $signPackage = $jssdk->GetSignPackage();
                         voiceUrl[i]=data[i].voiceUrl;
                         flag[i]=data[i].flag;
                     }
-                    _self.setState({voiceArr:voiceUrl,flags:flag,texts:text,lengths:data.length});
-                    /*$('#'+(_self.state.lengths-1)).parent().css({marginBottom:'55px'});*/
-                    console.log(_self.state.texts);        
+                    _self.setState({voiceArr:voiceUrl,flags:flag,texts:text,lengths:data.length,data:data});
+                    console.log(_self.state.data);        
                 },
                 error:function(xhr,status,err){
                     console.log(err);
@@ -182,7 +181,6 @@ $signPackage = $jssdk->GetSignPackage();
            ) 
         }
     });
-   /* React.initializeTouchEvents(true);*///初始化接触事件
     ReactDOM.render(<WeChat/>,document.getElementById("container"));
 </script>
 <script>
@@ -220,6 +218,7 @@ $signPackage = $jssdk->GetSignPackage();
             if($(".text_message input").val()){
                 if($(".text_message input").val().length<=15){
                     $("footer").before("<div class='right box'><div class='right_child' alt='头像'><div class='right_box'><span class='org_box_cor corr'></span>"+$(".text_message input").val()+"</div><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div></div>");
+                    //这里到时添加ajax传serverId给后台
                     $(".text_message input").val('');
                 }else{
                     alert("字数超过限制！");
@@ -231,7 +230,6 @@ $signPackage = $jssdk->GetSignPackage();
             }
         });
         $("#voicebtn").on("touchstart",function(){
-            alert("录音开始！");
             wx.startRecord();
         });
         $("#sendvoicebtn").on("click",function(){
@@ -247,6 +245,7 @@ $signPackage = $jssdk->GetSignPackage();
                         success: function (res) {
                             serverId = res.serverId;
                             $("footer").before("<div class='right box'><div class='right_child' alt='头像'><div class='right_box change_position'><span class='org_box_cor corr'></span><i class='right_i'></i></div><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div><audio controls='controls' id="+index+"><source type='audio/mpeg' src='nohaslocalvoice'/></audio></div>");
+                        //这里到时添加ajax传serverId给后台
                         },
                         fail:function(){
                             alert("上传失败！");
