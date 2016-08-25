@@ -33,8 +33,8 @@ $signPackage = $jssdk->GetSignPackage();
     audio{opacity: 0;width: 10px;}
 
 
-    .wechat .right{float:right;width: 65%;position: relative;height: 50px;margin:10px 5px;}
-    .wechat .left{float: left;width:55%;position: relative;height: 50px;margin:10px 5px;}
+    .wechat .right{float:right;width: 65%;position: relative;height: 50px;margin:15px 5px;}
+    .wechat .left{float: left;width:55%;position: relative;height: 50px;margin:15px 5px;}
     .wechat img{display: inline-block;height: auto;width: 30%;border-radius: 18%}
 
     .wechat .right .right_child{position: absolute;right: 0px ;top:0px;height: 50px;width: 90%}
@@ -61,6 +61,9 @@ $signPackage = $jssdk->GetSignPackage();
     }
     .left_i{background-position: 0px 38px;}
     .right_i{background-position: 35px 38px;margin-left: 70%;}
+
+    .right .time{position: absolute;top:-20px;left:-50px;}
+    .left .time{position: absolute;top:-20px;right:-50px;}
 </style>
 <body>
     <div id="container">
@@ -109,9 +112,10 @@ $signPackage = $jssdk->GetSignPackage();
             var data = this.state.data;
             var _self=this;
             return data.map(function(data,index){
-                if(data['flag']==='1'){
-                    if(data['voiceUrl']==='0'){
+                if(data['direction']===2){
+                    if(data['type']!=='voice'){
                         return (<div className="right box"  key={index}>
+                                    <div className="time">{data['created_at']}</div>
                                     <div className="right_child" alt="头像">
                                         <div className="right_box"><span className="org_box_cor corr"></span>{data['stringText']}</div><img src="img/1.jpg" style={{marginLeft:"10px",marginBottom:"-12px"}}/>
                                     </div>
@@ -119,6 +123,7 @@ $signPackage = $jssdk->GetSignPackage();
 
                     }else{
                         return (<div className="right box"  key={index}>
+                                    <div className="time">{data['created_at']}</div>
                                     <div className="right_child" alt="头像">
                                         <div className="right_box change_position"><span className="org_box_cor corr"></span><i className="right_i"></i></div><img src="img/1.jpg" style={{marginLeft:"10px",marginBottom:"-10px"}}/>
                                     </div>
@@ -129,6 +134,7 @@ $signPackage = $jssdk->GetSignPackage();
                     }
                 }else{
                     return  (<div className="left box" key={index}>
+                                    <div className="time">{data['created_at']}</div>
                                     <div className="left_child" alt="头像">
                                         <img src="img/1.jpg" style={{marginRight:"10px",marginBottom:"-10px"}}/><div className="left_box change_position"><span className="org_box_cor corl"></span><i className="left_i"></i></div>
                                     </div>
