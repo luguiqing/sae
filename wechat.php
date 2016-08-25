@@ -62,8 +62,8 @@ $signPackage = $jssdk->GetSignPackage();
     .left_i{background-position: 0px 38px;}
     .right_i{background-position: 35px 38px;margin-left: 70%;}
 
-    .right .time{position: absolute;top:-20px;left:-50px;}
-    .left .time{position: absolute;top:-20px;right:-50px;}
+    .right .time{position: absolute;top:-20px;left:-30px;color:#BCC0C3;}
+    .left .time{position: absolute;top:-20px;right:-50px;color:#BCC0C3;}
 </style>
 <body>
     <div id="container">
