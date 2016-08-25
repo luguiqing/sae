@@ -34,8 +34,8 @@ $signPackage = $jssdk->GetSignPackage();
 
 
     .wechat .right{float:right;width: 65%;position: relative;height: 50px;margin:15px 5px;}
-    .wechat .left{float: left;width:55%;position: relative;height: 50px;margin:15px 5px;}
-    .wechat img{display: inline-block;height: auto;width: 30%;border-radius: 18%}
+    .wechat .left{float: left;width:55%;position: relative;height: 50px;margin:25px 5px 10px;}
+    .wechat img{display: inline-block;height: auto;width: 30%;border-radius: 50%;vertical-align: middle;}
 
     .wechat .right .right_child{position: absolute;right: 0px ;top:0px;height: 50px;width: 90%}
     .wechat .left  .left_child{position: absolute;left: 0px;top:0px;height: 50px;}
@@ -117,7 +117,7 @@ $signPackage = $jssdk->GetSignPackage();
                         return (<div className="right box"  key={index}>
                                     <div className="time">{data['created_at']}</div>
                                     <div className="right_child" alt="头像">
-                                        <div className="right_box"><span className="org_box_cor corr"></span>{data['stringText']}</div><img src="img/1.jpg" style={{marginLeft:"10px",marginBottom:"-12px"}}/>
+                                        <div className="right_box"><span className="org_box_cor corr"></span>{data['stringText']}</div><img src="img/1.jpg" style={{marginLeft:"10px"}}/>
                                     </div>
                                 </div>)
 
@@ -125,7 +125,7 @@ $signPackage = $jssdk->GetSignPackage();
                         return (<div className="right box"  key={index}>
                                     <div className="time">{data['created_at']}</div>
                                     <div className="right_child" alt="头像">
-                                        <div className="right_box change_position"><span className="org_box_cor corr"></span><i className="right_i"></i></div><img src="img/1.jpg" style={{marginLeft:"10px",marginBottom:"-10px"}}/>
+                                        <div className="right_box change_position"><span className="org_box_cor corr"></span><i className="right_i"></i></div><img src="img/1.jpg" style={{marginLeft:"10px"}}/>
                                     </div>
                                     <audio controls="controls" id={index}>
                                         <source src={data['voiceUrl']} type="audio/mpeg" />
@@ -136,7 +136,7 @@ $signPackage = $jssdk->GetSignPackage();
                     return  (<div className="left box" key={index}>
                                     <div className="time">{data['created_at']}</div>
                                     <div className="left_child" alt="头像">
-                                        <img src="img/1.jpg" style={{marginRight:"10px",marginBottom:"-10px"}}/><div className="left_box change_position"><span className="org_box_cor corl"></span><i className="left_i"></i></div>
+                                        <img src="img/1.jpg" style={{marginRight:"10px"}}/><div className="left_box change_position"><span className="org_box_cor corl"></span><i className="left_i"></i></div>
                                     </div>
                                     <audio controls="controls" id={index}>
                                         <source src={data['voiceUrl']} type="audio/mpeg" />
@@ -208,7 +208,7 @@ $signPackage = $jssdk->GetSignPackage();
         $("#sendtxtbtn").on("click",function(){
             if($(".text_message input").val()){
                 if($(".text_message input").val().length<=15){
-                    $("footer").before("<div class='right box'><div class='right_child' alt='头像'><div class='right_box'><span class='org_box_cor corr'></span>"+$(".text_message input").val()+"</div><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div></div>");
+                    $("footer").before("<div class='right box'><div class='right_child' alt='头像'><div class='right_box'><span class='org_box_cor corr'></span>"+$(".text_message input").val()+"</div><img src='img/1.jpg' style='margin-left:10px;'/></div></div>");
                     //这里到时添加ajax传serverId给后台
                     $(".text_message input").val('');
                 }else{
@@ -235,7 +235,7 @@ $signPackage = $jssdk->GetSignPackage();
                         isShowProgressTips: 1,
                         success: function (res) {
                             serverId = res.serverId;
-                            $("footer").before("<div class='right box'><div class='right_child' alt='头像'><div class='right_box change_position'><span class='org_box_cor corr'></span><i class='right_i'></i></div><img src='img/1.jpg' style='margin-left:10px;margin-bottom:-12px'/></div><audio controls='controls' id="+index+"><source type='audio/mpeg' src='nohaslocalvoice'/></audio></div>");
+                            $("footer").before("<div class='right box'><div class='right_child' alt='头像'><div class='right_box change_position'><span class='org_box_cor corr'></span><i class='right_i'></i></div><img src='img/1.jpg' style='margin-left:10px;'/></div><audio controls='controls' id="+index+"><source type='audio/mpeg' src='nohaslocalvoice'/></audio></div>");
                         //这里到时添加ajax传serverId给后台
                         },
                         fail:function(){
