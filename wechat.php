@@ -48,10 +48,10 @@ $signPackage = $jssdk->GetSignPackage();
     .wechat>div:last-of-type{margin-bottom: 110px!important;}
 
 
-    .right_box{width:60%; height:50px; line-height:25px;background:#36C547;font-size:12px; position:relative; display: inline-block;font-size: 15px!important} 
-    .left_box{width:60%; height:50px; line-height:25px;background:#EAE4D7;font-size:12px; position:relative; display: inline-block;}
+    .right_box{width:60%; height:50px; line-height:25px;background:#76F794;font-size:12px; position:relative; display: inline-block;font-size: 15px!important;border-radius: 8px;} 
+    .left_box{width:60%; height:50px; line-height:25px;background:#EAE4D7;font-size:12px; position:relative; display: inline-block;border-radius: 8px;}
     .org_box_cor{ width:0; height:0; font-size:0;border-style:solid;overflow:hidden; position:absolute; }
-    .corr{border-width:10px;border-color:transparent transparent transparent #36C547;right:-20px; bottom:15px;}
+    .corr{border-width:10px;border-color:transparent transparent transparent #76F794;right:-20px; bottom:15px;}
     .corl{border-width:10px;border-color:transparent #EAE4D7 transparent transparent;left:-20px; bottom:15px;}
     .change_position i{background-image: url("img/voice-ani@2x.gif");
         width: 30px;
