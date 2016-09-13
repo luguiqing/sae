@@ -3,7 +3,7 @@
 	<head>        
 		<meta charset="UTF-8">        
 		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">         
-		<title>设备列表</title>         
+		<title>删除设备</title>         
 		<link rel="stylesheet" href="css/weui.min.css"/>
 		<script src="js/react-0.14.7/build/react.js"></script>
 		<script src="js/react-0.14.7/build/react-dom.js"></script>
@@ -42,7 +42,8 @@
 		</div>
 	</body>
 	<script type="text/babel">
-		var Homepage = React.createClass({
+	//这里采用内联样式，上面的css已经有了
+		var RemoveDevice = React.createClass({
 			getInitialState:function(){
             return {datalist:[{"nick":"baby1","IMEI":"123456"},{"nick":"baby2","IMEI":"7890123"}]}
 	        },
@@ -50,7 +51,7 @@
 	            var _self = this;
 	            $.ajax({
 	                type:"GET",
-	                url:"http://api.watch.h-hy.com:8080/v1/device",
+	                url:"http://api.watch.h-hy.com:8080/v1/device?username="+this.props.username+"&ticket="+this.props.ticket,
 	                dataType:"json",
 	                success:function(data){
 	                //这里没有数据，所有先用虚拟数据	                   
@@ -66,13 +67,38 @@
 	        },
 			componentDidMount:function(){
 				this.getMsg();
+				var _self = this;
+				alert("w")
+				$(".container .weui_cells").on('click',function(){
+
+					/*alert($(this).index())*/
+					//中间要加判断是否确定，弹出个窗口
+					var i = $(this).index();
+					$.ajax({
+		                type:"DELETE",
+		                url:"http://api.watch.h-hy.com:8080/v1/device/"+_self.state.datalist[i].IMEI+"?username="+_self.props.username+"&ticket="+_self.props.ticket,
+		                success:function(response){
+       		   				/*_self.setState({datalist:[{"nick":"baby21","IMEI":"123456"},{"nick":"baby22","IMEI":"7890123"}]})*/
+       		   				if(data.errcode==0){
+								_self.getMsg();
+							}
+       		   				
+		                },
+		                error:function(xhr,status,err){
+		                    console.log(err);
+		                    console.log(status);
+		                }
+		                
+		            })
+
+				});
 			},
 			handleMsg:function(){
 				var _self = this;
 				return _self.state.datalist.map(function(data,index){
 					return(
 						<div className="weui_cells weui_cells_access" style={{marginTop:'0px'}}>
-							<a className="weui_cell" href="javascript:;">
+							<div className="weui_cell">
 					            <div className="weui_cell_hd">
 					            	<i className="iconfont">&#xe624;</i>
 					            </div>
@@ -82,7 +108,7 @@
 					            <div className="weui_cell_footer">
 					            	{data.nick+'('+data.IMEI+')'}
 					            </div>
-					        </a>
+					        </div>
 					    </div>
 					)
 				})
@@ -93,35 +119,23 @@
 						{
 							this.handleMsg()
 						}
-						<a href="#" className="add_btn btn" style={{color:"black"}}>
-							添加设备
-						</a>
-						<a href="#" className="change_btn btn" style={{color:"black"}}>
-							修改昵称
-						</a>
-						<a href="#" className="delete_btn btn" style={{color:"black"}}>
-							删除设备
-						</a>
 					    <div className="footer">
 							<ul>
-								<li><a href="https://luguiqing.applinzi.com/we_logout.html" style={{backgroundColor:"#34AAB7"}}><i className="iconfont">&#xe6ba;</i><p>关于我</p></a></li>
-								<li><a href="https://luguiqing.applinzi.com/index.php" style={{backgroundColor:"#54CC76"}}><i className="iconfont">&#xe666;</i><p>主页</p></a></li>
+								<li><a href="#" style={{backgroundColor:"#34AAB7"}}><i className="iconfont">&#xe6ba;</i><p>关于我</p></a></li>
+								<li><a href="#" style={{backgroundColor:"#54CC76"}}><i className="iconfont">&#xe666;</i><p>主页</p></a></li>
 							</ul>
 						</div>
 				    </div>
 				)
 			}
 		})
-		ReactDOM.render(<Homepage username="44"/>,document.getElementById('devicelist'));
+		ReactDOM.render(<RemoveDevice username="13590293542" ticket="13590293542"/>,document.getElementById('devicelist'));
 	</script> 
 	<script>
-		var data=[{"name":"lu","age":"18"},{"name":"gui","age":"19"}];
-		data.forEach(function(x,index){
-			console.log(x.name);
+		$(document).ready(function(){
+			
+
 		});
-		data.map(function(x,index){
-			console.log(x.age);
-		})
 	</script>
 </html> 
 

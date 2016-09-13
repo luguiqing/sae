@@ -80,11 +80,14 @@ $signPackage = $jssdk->GetSignPackage();
             var _self = this;
             $.ajax({
                 type:"GET",
-                url:"wechat_houtai.php",
+                url:"http://api.watch.h-hy.com:8080/v1/device/201601300000005/chatRecord?username=13590213451&ticket=13590213451",
+                /*url:"http://api.watch.h-hy.com:8080/v1/device/"+IMEI+"/chatRecord?username="+username+"&ticket="+ticket,*/
                 dataType:"json",
                 success:function(data){
-                    _self.setState({lengths:data.length,data:data});
-                    console.log(_self.state.data);        
+                    if(data.errcode==0){
+                        _self.setState({lengths:data.length,data:data.data});
+                    }
+                            
                 },
                 error:function(xhr,status,err){
                     console.log(err);
@@ -208,8 +211,29 @@ $signPackage = $jssdk->GetSignPackage();
         $("#sendtxtbtn").on("click",function(){
             if($(".text_message input").val()){
                 if($(".text_message input").val().length<=15){
-                    $("footer").before("<div class='right box'><div class='right_child' alt='头像'><div class='right_box'><span class='org_box_cor corr'></span>"+$(".text_message input").val()+"</div><img src='img/2.jpg' style='margin-left:10px;'/></div></div>");
+                    
                     //这里到时添加ajax传serverId给后台
+                    $.ajax({
+                            type:"POST",
+                            url:"http://api.watch.h-hy.com:8080/v1/device/"+IMEI+"/text",
+                            dataType:"json",
+                            data:{
+                                content:$(".text_message input").val(),
+                                username:username,
+                                ticket:ticket
+                            },
+                            success:function(data){
+                                if(data.errcode==0){
+                                     $("footer").before("<div class='right box'><div class='right_child' alt='头像'><div class='right_box'><span class='org_box_cor corr'></span>"+$(".text_message input").val()+"</div><img src='img/2.jpg' style='margin-left:10px;'/></div></div>");
+                                }   
+                            },
+                            error:function(xhr,status,err){
+                                console.log(err);
+                                console.log(status);
+                            }
+                            
+                        })
+                    //
                     $(".text_message input").val('');
                 }else{
                     alert("字数超过限制！");
@@ -217,7 +241,6 @@ $signPackage = $jssdk->GetSignPackage();
                 }
             }else{
                 alert("发送的信息不能为空！");
-                alert($('.wechat>div:last').index());
             }
         });
         $("#voicebtn").on("touchstart",function(){
@@ -229,14 +252,35 @@ $signPackage = $jssdk->GetSignPackage();
                     var index = $('.wechat>div:last').index()+1;
                     localvoice[index] = res.localId;
                     localId = res.localId;
-                    alert(localId);
                     wx.uploadVoice({
                         localId: localId,
                         isShowProgressTips: 1,
                         success: function (res) {
                             serverId = res.serverId;
-                            $("footer").before("<div class='right box'><div class='right_child' alt='头像'><div class='right_box change_position'><span class='org_box_cor corr'></span><i class='right_i'></i></div><img src='img/2.jpg' style='margin-left:10px;'/></div><audio controls='controls' id="+index+"><source type='audio/mpeg' src='nohaslocalvoice'/></audio></div>");
+                           
                         //这里到时添加ajax传serverId给后台
+                          $.ajax({
+                            type:"POST",
+                            url:"http://api.watch.h-hy.com:8080/v1/device/"+IMEI+"/voice",
+                            dataType:"json",
+                            data:{
+                                wechatMediaId:serverId,
+                                username:username,
+                                ticket:ticket
+                            },
+                            success:function(data){
+                                if(data.errcode==0){
+                                     $("footer").before("<div class='right box'><div class='right_child' alt='头像'><div class='right_box change_position'><span class='org_box_cor corr'></span><i class='right_i'></i></div><img src='img/2.jpg' style='margin-left:10px;'/></div><audio controls='controls' id="+index+"><source type='audio/mpeg' src='nohaslocalvoice'/></audio></div>");
+                                }   
+                            },
+                            error:function(xhr,status,err){
+                                console.log(err);
+                                console.log(status);
+                            }
+                            
+                        })
+
+                        //
                         },
                         fail:function(){
                             alert("上传失败！");
@@ -267,7 +311,6 @@ $signPackage = $jssdk->GetSignPackage();
             alert(index);
             var mychoosevoide=document.getElementById(index);
             if($("#"+index+" source").attr("src")==="nohaslocalvoice"){
-                alert("判断成功！");
                 wx.playVoice({
                                 localId: localvoice[index] 
                             });

@@ -1,0 +1,106 @@
+<!DOCTYPE html> 
+<html>     
+	<head>        
+		<meta charset="UTF-8">        
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">         
+		<title>添加设备</title>         
+		<link rel="stylesheet" href="css/weui.min.css"/>
+		<script src="js/react-0.14.7/build/react.js"></script>
+		<script src="js/react-0.14.7/build/react-dom.js"></script>
+		<script src="js/jquery-1.12.4.min.js"></script>
+    	<script src="js/browser.min.js"></script>   
+	</head>
+	<style>
+	    @font-face {font-family: 'iconfont';
+	      src: url('iconfont/iconfont.eot'); /* IE9*/
+	      src: url('iconfont/iconfont.eot?#iefix') format('embedded-opentype'), 
+	      url('iconfont/iconfont.woff') format('woff'), 
+	      url('iconfont/iconfont.ttf') format('truetype'),
+	      url('iconfont/iconfont.svg#iconfont') format('svg'); 
+	    }
+	    .iconfont{
+	      font-family:"iconfont" !important;
+	      font-size:16px;font-style:normal;
+	      -webkit-font-smoothing: antialiased;
+	      -webkit-text-stroke-width: 0.2px;
+	      -moz-osx-font-smoothing: grayscale;
+	      color: #49dfff;
+	    }
+	    .weui_cell_hd{margin-right: 10px;}
+
+	    .weui_cell_footer{text-align: right;display: inline-block;color: #c8c8cd;}
+
+	    .btn{display:inline-block;width: 80px;height:80px;border-radius: 50%;border: 1px solid #26E22B;text-align: center; line-height: 80px;margin: 10px;}
+
+		.footer{width: 100%;height:50px;position: fixed;bottom: 0px;left: 0px;}
+		.footer ul li{display: inline-block;width: 50%;text-align: center;float: left;}
+		.footer ul li a{color: #49dfff;display:block;font-size: 12px;padding-top: 10px;height: 40px;}
+	</style>    
+	<body  style="background-color:#fff;">
+		<div id="devicelist">
+			
+		</div>
+	</body>
+	<script type="text/babel">
+	//这个都是用内联样式写的 
+		var AddDevice = React.createClass({
+			getInitialState:function(){
+            return {}
+	        },
+			componentDidMount:function(){
+				
+
+			},
+			handleClick:function(){
+				var IMEI =this.refs.IMEI.getDOMNode().value;
+				var nick = this.refs.nick.getDOMNode().value;
+				console.log(IMEI);
+				console.log(nick);
+				//到时这里需要输入判断格式问题
+				$.ajax({
+					type:"POST",
+					url:"http://api.watch.h-hy.com:8080/v1/device?username="+this.props.username+"&ticket="+this.props.ticket+"&IMEI="+IMEI+"&nick="+nick,
+					dataType:"json",
+					success:function(data){
+						if(data.errcode==0){
+							console.log("绑定成功！")
+						}
+					},
+					error:function(xhr,status,err){
+						console.log(err);
+						console.log(status);
+					}
+				})
+			},
+			render:function(){
+				return(
+					<div className="container" style={{margin:'10px'}}>
+						<p style={{fontSize:'14px',color:'red'}}>亲，如果有注册码只能用注册码，如果没有则用设备ID。</p>
+						<div className="weui_cell" style={{borderRadius:'5px',marginBottom:'5px',border:'1px solid #B5E67D'}}>
+				            <div className="weui_cell_hd"><label className="weui_label" style={{width:'75px'}}>注册码：</label></div>
+				            <div className="weui_cell_bd weui_cell_primary">
+				                <input className="weui_input" type="number" placeholder="输入注册码" ref="IMEI"/>
+				            </div>
+				        </div>
+				        <div className="weui_cell" style={{borderRadius:'5px',marginBottom:'15px',border:'1px solid #B5E67D'}}>
+				            <div className="weui_cell_hd"><label className="weui_label" style={{width:'75px'}}>设备昵称:</label></div>
+				            <div className="weui_cell_bd weui_cell_primary">
+				                <input className="weui_input" type="text"  placeholder="请输入宝贝昵称" ref="nick"/>
+				            </div>
+				        </div>
+				        <div className="bd spacing">
+						    <a href="javascript:;" className="weui_btn weui_btn_primary" onClick={this.handleClick}>确认</a>						   
+						</div>
+						<div className="footer">
+							<ul>
+								<li><a href="#" style={{backgroundColor:"#34AAB7"}}><i className="iconfont">&#xe6ba;</i><p>关于我</p></a></li>
+								<li><a href="#" style={{backgroundColor:"#54CC76"}}><i className="iconfont">&#xe666;</i><p>主页</p></a></li>
+							</ul>
+						</div>
+				    </div>
+				)
+			}
+		})
+		ReactDOM.render(<AddDevice username="13590293542" ticket="13590293542"/>,document.getElementById('devicelist'));
+	</script> 
+</html> 
