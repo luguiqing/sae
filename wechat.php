@@ -211,7 +211,7 @@ $signPackage = $jssdk->GetSignPackage();
         $("#sendtxtbtn").on("click",function(){
             if($(".text_message input").val()){
                 if($(".text_message input").val().length<=15){
-                    
+                    $("footer").before("<div class='right box'><div class='right_child' alt='头像'><div class='right_box'><span class='org_box_cor corr'></span>"+$(".text_message input").val()+"</div><img src='img/2.jpg' style='margin-left:10px;'/></div></div>");
                     //这里到时添加ajax传serverId给后台
                     $.ajax({
                             type:"POST",
@@ -226,8 +226,8 @@ $signPackage = $jssdk->GetSignPackage();
                                 ticket:13590213451
                             },
                             success:function(data){
-                                if(data.errcode==0){
-                                     $("footer").before("<div class='right box'><div class='right_child' alt='头像'><div class='right_box'><span class='org_box_cor corr'></span>"+$(".text_message input").val()+"</div><img src='img/2.jpg' style='margin-left:10px;'/></div></div>");
+                                if(data.errcode!=0){
+                                    $(".text_message input").val(data.errmsg); 
                                 }   
                             },
                             error:function(xhr,status,err){
