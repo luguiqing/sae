@@ -85,7 +85,7 @@ $signPackage = $jssdk->GetSignPackage();
                 dataType:"json",
                 success:function(data){
                     if(data.errcode==0){
-                        _self.setState({lengths:data.length,data:data.data.reverse()});
+                        _self.setState({lengths:data.length,data:data.data});
                     }
                             
                 },
