@@ -215,7 +215,8 @@ $signPackage = $jssdk->GetSignPackage();
                     //这里到时添加ajax传serverId给后台
                     $.ajax({
                             type:"POST",
-                            url:"http://api.watch.h-hy.com:8080/v1/device/"+IMEI+"/text",
+                            /*url:"http://api.watch.h-hy.com:8080/v1/device/"+IMEI+"/text",*/
+                            url:"http://api.watch.h-hy.com:8080/v1/device/201601300000005/text",
                             dataType:"json",
                             data:{
                                 content:$(".text_message input").val(),
@@ -261,7 +262,8 @@ $signPackage = $jssdk->GetSignPackage();
                         //这里到时添加ajax传serverId给后台
                           $.ajax({
                             type:"POST",
-                            url:"http://api.watch.h-hy.com:8080/v1/device/"+IMEI+"/voice",
+                            /*url:"http://api.watch.h-hy.com:8080/v1/device/"+IMEI+"/voice",*/
+                            url:"http://api.watch.h-hy.com:8080/v1/device/201601300000005/voice",
                             dataType:"json",
                             data:{
                                 wechatMediaId:serverId,
