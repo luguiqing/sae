@@ -220,8 +220,10 @@ $signPackage = $jssdk->GetSignPackage();
                             dataType:"json",
                             data:{
                                 content:$(".text_message input").val(),
-                                username:username,
-                                ticket:ticket
+                                /*username:username,*/
+                                username:13590213451,
+                                /*ticket:ticket*/
+                                ticket:13590213451
                             },
                             success:function(data){
                                 if(data.errcode==0){
@@ -267,8 +269,10 @@ $signPackage = $jssdk->GetSignPackage();
                             dataType:"json",
                             data:{
                                 wechatMediaId:serverId,
-                                username:username,
-                                ticket:ticket
+                                /*username:username,*/
+                                username:13590213451,
+                                /*ticket:ticket*/
+                                ticket:13590213451
                             },
                             success:function(data){
                                 if(data.errcode==0){
