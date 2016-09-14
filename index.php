@@ -112,7 +112,7 @@ $signPackage = $jssdk->GetSignPackage();
 						<div className="content_container">
 							<div className="left">
 								<ul>
-									<li><a href="https://luguiqing.applinzi.com/wechat.php" style={{backgroundColor:"#324CE6"}}><i className="iconfont">&#xe606;</i>微聊</a></li>
+									<li><a href="https://luguiqing.applinzi.com/wechat.html" style={{backgroundColor:"#324CE6"}}><i className="iconfont">&#xe606;</i>微聊</a></li>
 									<li><a href="#" style={{backgroundColor:"#1E39D6"}}><i className="iconfont">&#xe602;</i>健康</a></li>
 									<li><a href="#" style={{backgroundColor:"#0C219A"}}><i className="iconfont">&#xe638;</i>足迹</a></li>
 									<li><a href="#" style={{backgroundColor:"#09155A"}}><i className="iconfont">&#xe635;</i>安全区域</a></li>
