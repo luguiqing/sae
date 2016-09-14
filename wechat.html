@@ -28,7 +28,7 @@
     audio{opacity: 0;width: 10px;}
 
 
-    .wechat .right{float:right;width: 65%;position: relative;height: 50px;margin:15px 5px;}
+    .wechat .right{float:right;width: 65%;position: relative;height: 50px;margin:23px 5px;}
     .wechat .left{float: left;width:55%;position: relative;height: 50px;margin:25px 5px 10px;}
     .wechat img{display: inline-block;height: auto;width: 30%;border-radius: 50%;vertical-align: middle;}
 
@@ -57,7 +57,8 @@
     .left_i{background-position: 0px 38px;}
     .right_i{background-position: 35px 38px;margin-left: 70%;}
 
-    .right .time{position: absolute;top:-20px;left:-30px;color:#BCC0C3;}
+    .right .time_text{position: absolute;top:-5px;left:-30px;color:#BCC0C3;}
+    .right .time_voice{position: absolute;top:-20px;left:-30px;color:#BCC0C3;}
     .left .time{position: absolute;top:-20px;right:-50px;color:#BCC0C3;}
 </style>
 <body>
@@ -113,7 +114,7 @@
                 if(data['direction']===2){
                     if(data['type']!=='voice'){
                         return (<div className="right box"  key={index}>
-                                    <div className="time">{data['created_at']}</div>
+                                    <div className="time_text">{data['created_at']}</div>
                                     <div className="right_child" alt="头像">
                                         <div className="right_box"><span className="org_box_cor corr"></span>{data['content']}</div><img src="img/2.jpg" style={{marginLeft:"10px"}}/>
                                     </div>
@@ -121,7 +122,7 @@
 
                     }else{
                         return (<div className="right box"  key={index}>
-                                    <div className="time">{data['created_at']}</div>
+                                    <div className="time_voice">{data['created_at']}</div>
                                     <div className="right_child" alt="头像">
                                         <div className="right_box change_position"><span className="org_box_cor corr"></span><i className="right_i"></i></div><img src="img/2.jpg" style={{marginLeft:"10px"}}/>
                                     </div>
