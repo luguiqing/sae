@@ -115,7 +115,7 @@
                         return (<div className="right box"  key={index}>
                                     <div className="time">{data['created_at']}</div>
                                     <div className="right_child" alt="头像">
-                                        <div className="right_box"><span className="org_box_cor corr"></span>{data['stringText']}</div><img src="img/2.jpg" style={{marginLeft:"10px"}}/>
+                                        <div className="right_box"><span className="org_box_cor corr"></span>{data['content']}</div><img src="img/2.jpg" style={{marginLeft:"10px"}}/>
                                     </div>
                                 </div>)
 
@@ -212,31 +212,6 @@
                 }
                 
             })
-    wx.config({
-        /*debug: true,*/
-        appId: '<?php echo $signPackage["appId"];?>',
-        timestamp: <?php echo $signPackage["timestamp"];?>,
-        nonceStr: '<?php echo $signPackage["nonceStr"];?>',
-        signature: '<?php echo $signPackage["signature"];?>',
-        jsApiList: [
-        // 所有要调用的 API 都要加到这个列表中
-        "onMenuShareTimeline",
-        "openLocation",
-        "getLocation",
-        "chooseImage",
-        "previewImage",
-        "uploadImage",
-        "startRecord",
-        "stopRecord",
-        "onVoiceRecordEnd",
-        "playVoice",
-        "pauseVoice",
-        "stopVoice",
-        "uploadVoice",
-        "downloadVoice"
-          ]
-    });
-    
     wx.ready(function () {
         var localId;
         var serverId;
