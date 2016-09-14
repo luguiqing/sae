@@ -176,7 +176,7 @@
   $(document).ready(function(){
     $.ajax({
                 type:"GET",
-                url:"http://api.watch.h-hy.com:8080/v1/system?pageUrl=http://luguiqing.applinzi.com/wechat.html",
+                url:"http://api.watch.h-hy.com:8080/v1/system?pageUrl="+encodeURI('http://luguiqing.applinzi.com/wechat.html'),
                 dataType:"json",               
                 success:function(data){
                     if(data.errcode==0){
