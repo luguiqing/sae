@@ -181,7 +181,7 @@
                 success:function(data){
                     if(data.errcode==0){
                          wx.config({
-                            /*debug: true,*/
+                            debug: true,
                             appId: data.data.appId,
                             timestamp: data.data.timestamp,
                             nonceStr: data.data.nonceStr,
